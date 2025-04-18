@@ -1,0 +1,84 @@
+<!-- accounts/templates/accounts/register.html -->
+{% extends 'base.html' %}
+{% block title %} | Register {% endblock %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'accounts/css/account_styles.css' %}">
+{% endblock %}
+{% block content %}
+<section id="cardForm" class="register-form">
+  <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+    <div class="col-md-8 col-12 mx-auto">
+      <div class="card text-center">
+        <h2 class="card-header">Register</h2>
+        <div class="card-body">
+          <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <!-- First Name -->
+            <div class="form-floating mb-3">
+              <input type="text" name="first_name" class="form-control" id="first_name" placeholder="First Name" required>
+              <label for="first_name">First Name</label>
+            </div>
+            <!-- Last Name -->
+            <div class="form-floating mb-3">
+              <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Last Name" required>
+              <label for="last_name">Last Name</label>
+            </div>
+            <!-- Username -->
+            <div class="form-floating mb-3">
+              <input type="text" name="username" class="form-control" id="username" placeholder="Username" required>
+              <label for="username">Username</label>
+            </div>
+            <!-- Email -->
+            <div class="form-floating mb-3">
+              <input type="email" name="email" class="form-control" id="email" placeholder="Email" required>
+              <label for="email">Email</label>
+            </div>
+            <!-- Password -->
+            <div class="form-floating mb-3">
+              <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+              <label for="password">Password</label>
+            </div>
+            <!-- Password Strength Indicator -->
+            <div id="password-strength" class="mb-3">
+               <small id="password-strength-text" class="form-text">
+                 <span id="strength-text"></span>
+                 <ul class="list-unstyled d-none" id="strength-requirements">
+                  <li>Password Requirements: </li>
+                   <li id="length-requirement" class="">8 characters minimum</li>
+                   <li id="uppercase-requirement" class="">1 uppercase letter</li>
+                   <li id="lowercase-requirement" class="">1 lowercase letter</li>
+                   <li id="number-requirement" class="">1 number</li>
+                   <li id="special-char-requirement" class="">1 special character</li>
+                 </ul>
+               </small>
+             </div>
+            <!-- Confirm Password -->
+            <div class="form-floating mb-3">
+              <input type="password" name="password2" id="password2" class="form-control" placeholder="Confirm Password" required>
+              <label for="password2">Confirm Password</label>
+            </div>
+            <hr>
+            <!-- Submit Form -->
+            <div class="row text-center mt-4 mb-2">
+              <div class="col-6 mx-auto">
+                <a href="{% url 'login' %}" class="btn btn-primary rounded-3 mx-auto">
+                  <i class="fa-solid fa-arrow-left"></i>
+                  <span class="px-2"></span>
+                  Back to Login
+                </a>
+              </div>
+              <div class="col-6 mx-auto">
+                <button type="submit" value="register" class="btn btn-primary rounded-3 mx-auto">
+                  Register
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="{% static 'accounts/js/password_validation.js' %}"></script>
+{% endblock %}

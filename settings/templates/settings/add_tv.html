@@ -1,0 +1,62 @@
+<!-- settings/templates/settings/add_new_tv.html -->
+{% extends "base.html" %}
+{% block title %} | Add TV {% endblock %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'settings/css/settings.css' %}">
+{% endblock %}
+{% block content %}
+<section id="settings" class="add-tv pt-7 pb-5 pt-sm-0 pb-sm-0">
+  <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+    <div class="card text-center">
+      <h2 class="card-header">Add a New TV</h2>
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+          <div class="row">
+            <p class="text-muted fs-5">Enter the name and IP address of the TV.</p>
+          </div>
+          <div class="row mt-2">
+            <ul class="list-unstyled mx-auto">
+              <li class="list-item mb-3 mb-lg-1">
+                <span class="text-secondary">Note:</span> Please ensure that the TV is connected to the same network as your device.
+              </li>
+              <li class="list-item mb-3 mb-lg-1">
+                <span class="text-secondary">Tip:</span> You can find the IP address of your TV in the network settings of the TV.
+              </li>
+              <li class="list-item mb-3 mb-lg-1">
+                <span class="text-secondary">Help:</span> If you have no idea what that means, don't worry. Just visit the <a href="{% url 'help' %}" class="text-info">help page</a> for assistance.
+              </li>
+            </ul>
+          </div>
+          <div class="form-floating mb-4">
+            <input type="text" class="form-control" id="name" name="name" placeholder="">
+            <label for="name">Name</label>
+          </div>
+          <div class="form-floating mb-4">
+            <input type="text" class="form-control" id="ip_address" name="ip_address" placeholder="">
+            <label for="ip_address">IP Address</label>
+          </div>
+          <hr>
+          <div class="row mt-4 mb-3">
+            <div class="col-md-6">
+              <a href="{% url 'settings' %}" class="btn btn-primary rounded-3 mx-auto my-lg-0 my-3">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span class="px-2"></span>
+                Cancel
+              </a>
+            </div>
+            <div class="col-md-6">
+              <button type="submit" value="save" class="btn btn-primary rounded-3 mx-auto my-lg-0 my-3">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span class="px-2"></span>
+                Save Settings
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

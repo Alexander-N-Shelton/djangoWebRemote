@@ -1,0 +1,51 @@
+<!-- accounts/templates/accounts/login.html -->
+{% extends 'base.html' %}
+{% block title %} | Account Login {% endblock %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'accounts/css/account_styles.css' %}">
+{% endblock %}
+{% block content %}
+<section id="cardForm" class="login">
+  <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+    <div class="col-md-10 col-lg-8 mx-auto">
+      <!-- Login Card -->
+      <div class="card text-center">
+        <h2 class="card-header">Login</h2>
+        <div class="card-body">
+          <!-- Login Form -->
+          <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <!-- Username Input -->
+            <div class="form-floating mb-3">
+              <input type="text" name="username" class="form-control" id="username" placeholder="Username" required>
+              <label for="username">Username</label>
+            </div>
+            <!-- Password Input -->
+            <div class="form-floating mb-3">
+              <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+              <label for="password">Password</label>
+            </div>
+            <!-- Login Button -->
+            <div class="col mx-auto">
+              <button type="submit" value="Login" class="btn btn-primary rounded-3 my-3">Login</button>
+            </div>
+          </form> 
+          <hr>
+          <div class="row mx-auto my-2">
+            <div class="col-md-6">
+              <div class="text-muted mb-2">No Account?</div>
+              <a href="{% url 'register' %}" class="btn btn-primary rounded-3 text-nowrap mx-auto mb-3 mb-lg-0">Register Now</a>
+            </div>
+            <div class="col-md-6">
+              <div class="text-muted mb-2">Forgot Your Password?</div>
+              <a href="{% url 'password_reset' %}" class="btn btn-primary rounded-3 text-nowrap mx-auto">Reset Password</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

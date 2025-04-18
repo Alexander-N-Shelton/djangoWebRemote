@@ -1,0 +1,121 @@
+<!-- settings/templates/settings/settings.html -->
+{% extends 'base.html' %}
+{% block title %} | Account Settings {% endblock %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'settings/css/settings.css' %}">
+{% endblock %}
+{% block content %}
+<section id="settings" class="settings d-flex flex-column align-items-center min-vh-100 py-7">
+  <div class="container d-flex justify-content-center align-items-center border-bottom mx-auto">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a href="#accountSettingsTab" id="accountTab" class="nav-link active" data-bs-toggle="tab">
+          <span class="d-none d-lg-block">Account Settings</span>
+          <i class="bi bi-person-circle d-show d-lg-none" style="font-size: 1.3rem;"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#remoteSettingsTab" id="remoteTab" class="nav-link" data-bs-toggle="tab">
+          <span class="d-none d-lg-block">Remote Settings</span>
+          <i class="bi bi-dpad d-show d-lg-none" style="font-size: 1.3rem;"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#favoritesSettingsTab" id="favoritesTab" class="nav-link" data-bs-toggle="tab">
+          <span class="d-none d-lg-block">Favorite Settings</span>
+          <i class="bi bi-star d-show d-lg-none" style="font-size: 1.3em;"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#tvConnectionSettings" id="tvConnectionTab" class="nav-link" data-bs-toggle="tab">
+          <span class="d-none d-lg-block">TV Connections</span>
+          <i class="bi bi-tv d-show d-lg-none" style="font-size: 1.3rem;"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="container mt-lg-5 mt-3">
+    <div class="tab-content mb-5">
+      <!-- Account Settings Tab -->
+      <div class="tab-pane fade show active" id="accountSettingsTab">
+        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 mx-auto">
+          <div class="card mt-1" id="accountSettingsCard">
+            <div class="card-header text-center">
+              <h3 class="card-title">Account Settings</h3>
+            </div>
+            <div class="card-body">
+              <div class="d-grid gap-1 text-center">
+                <hr>
+                <p>Click the button below to change your password.</p>
+                <a href="{% url 'password_change' %}" class="btn btn-primary mb-2 mx-auto">Change Password</a>
+                <hr>
+                <p>Click the button below to update your profile.</p>
+                <a href="{% url 'update_profile' %}" class="btn btn-primary mb-2 mx-auto">Update Profile</a>
+                <hr>
+              </div> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Remote Setting Tab -->
+      <div class="tab-pane fade" id="remoteSettingsTab">
+        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 mx-auto">
+          <div class="card mt-1" id="remoteSettingsCard">
+            <div class="card-header text-center">
+              <h3 class="card-title">Remote Settings</h3>
+            </div>
+            <div class="card-body">
+              <div class="d-grid gap-1 text-center">
+                <hr>
+                <p>Click the button below to change your remote settings.</p>
+                <a href="{% url 'change_layout' %}" class="btn btn-primary mb-2 mx-auto">Change Layout</a>
+                <hr>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- TV Settings Tab -->
+      <div class="tab-pane fade" id="tvConnectionSettings">
+        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 mx-auto">
+          <div class="card mt-1" id="tvSettingsCard">
+            <div class="card-header text-center">
+              <h3 class="fw-bold">TV Settings</h3>
+            </div>
+            <div class="card-body text-center">
+              <div class="d-grid gap-1">
+              <hr>
+                <p>Click the button below to change your TV settings.</p>
+                <a href="{% url 'switch_tv' %}" class="btn btn-primary mb-2 mx-auto">Switch TV</a>
+              <hr>
+                <p>Click the button below to add a new TV.</p>
+                <a href="{% url 'add_tv' %}" class="btn btn-primary mb-2 mx-auto">Add TV</a>
+              <hr>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Favorite's Settings Tab -->
+      <div class="tab-pane fade" id="favoritesSettingsTab">
+        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 mx-auto">
+          <div class="card mt-1" id="favoriteSettingsCard">
+            <div class="card-header text-center">
+              <h3 class="card-title">Favorite Settings</h3>
+            </div>
+            <div class="card-body text-center">
+              <div class="d-grid gap-1">
+                <hr>
+                <p>Click the button below to add a new favorite.</p>
+                <a href="{% url 'edit_favorites' %}" class="btn btn-primary mb-2 mx-auto">Edit Favorites</a>
+                <hr>
+              </div>
+            </div> 
+          </div>
+        </div> 
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

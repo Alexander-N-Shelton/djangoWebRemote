@@ -1,0 +1,32 @@
+<!-- remote/dual_remote.html -->
+{% extends 'base.html' %}
+{% block title %} | Dual Remote {% endblock %}
+{% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'remote/css/remote.css' %}">
+  <link rel="stylesheet" href="{% static 'remote/css/dual_remote.css' %}">
+  {% if spacing_class == 'cozy' %}
+    <link rel="stylesheet" href="{% static 'remote/css/cozy_spacing.css' %}?v={{ spacing_class }}">
+  {% elif spacing_class == 'compact' %}
+    <link rel="stylesheet" href="{% static 'remote/css/compact_spacing.css' %}?v={{ spacing_class }}">
+  {% else %} 
+    <link rel="stylesheet" href="{% static 'remote/css/default_spacing.css' %}?v={{ spacing_class }}">
+  {% endif %}
+{% endblock %}
+{% block content %}
+<section id="dualRemote" class="dualRemote d-flex flex-column justify-content-center min-vh-100">
+  <div class="container">
+    <div class="accordion mt-2" id="remoteAccordion">
+      {% if favorites_first %}
+        {% include 'partials/_favorites_accordion.html' %}
+        {% include 'partials/_navigation_accordion.html' %}
+      {% else %}
+        {% include 'partials/_navigation_accordion.html' %}
+        {% include 'partials/_favorites_accordion.html' %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+<script src="{% static 'remote/js/commands.js' %}"></script>
+<script src="{% static 'remote/js/dual.js' %}"></script>
+{% endblock %}

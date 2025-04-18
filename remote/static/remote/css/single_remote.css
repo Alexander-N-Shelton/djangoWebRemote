@@ -1,0 +1,23 @@
+/* remote/static/remote/css/single_remote.css */
+
+/* Single Remote */
+#singleRemote .card-header {
+    box-shadow: 0 2px 4px var(--bs-secondary) !important;
+}
+
+#singleRemote .nav-link.active {
+    font-size: 1.5rem !important;
+}
+
+#singleRemote button {
+    transition: all 0.5s ease;
+    background: var(--bs-gray) !important;
+    color: var(--bs-dark) !important;
+    box-shadow: 0 0 4px var(--bs-light) !important; 
+}
+
+#singleRemote button:hover {
+    background-color: var(--bs-light) !important;
+    color: var(--bs-dark) !important;
+    box-shadow: inset 0 0 8px var(--bs-dark) !important; 
+}

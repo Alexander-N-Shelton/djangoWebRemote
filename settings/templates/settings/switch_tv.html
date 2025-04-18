@@ -1,0 +1,57 @@
+<!-- settings/templates/settings/add_new_tv.html -->
+{% extends "base.html" %}
+{% block title %} | Switch TV {% endblock %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'settings/css/settings.css' %}">
+{% endblock %}
+{% block content %}
+<section id="settings" class="switch-tv pt-7 pb-5 pt-sm-0 pb-sm-0">
+  <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+    <div class="card">
+      <div class="card-header text-center">
+        <h2 class="card-title">Change Active TV</h2>
+      </div>
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+          <div class="row text-center my-3">
+            <h4 id="settingLabel" class="fw-bold">TV Connections</h4>
+            <p class="text-muted fs-5">Choose the TV you want to control with the remote.</p>
+          </div>
+          <div class="row text-center my-3">
+            <p>The remote selected is the currently active TV.</p>
+          </div>
+          <div class="row my-4">
+            {% for connection in tv_connections %}
+            <div class="col-md-6 mx-auto">
+              <div class="form-check fs-3 mx-5">
+                <input class="form-check-input" type="radio" name="active_tv_id" id="tv_{{ connection.id }}" value="{{ connection.id }}" {% if connection.is_active %}checked{% endif %}>
+                <label class="form-check-label" for="tv_{{ connection.id }}">{{ connection.name }}</label>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <hr>
+          <div class="row text-center mx-5 mt-4 mb-3">
+            <div class="col-md-6">
+              <a href="{% url 'settings' %}" class="btn btn-primary rounded-3 mx-auto my-lg-0 my-3">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span class="px-2"></span>
+                Cancel
+              </a>
+            </div>
+            <div class="col-md-6">
+              <button type="submit" value="save" class="btn btn-primary rounded-3 mx-auto my-lg-0 my-3">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span class="px-2"></span>
+                Save Settings
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

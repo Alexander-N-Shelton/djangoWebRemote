@@ -1,0 +1,53 @@
+<!-- accounts/update_profile.html -->
+{% extends 'base.html' %}
+{% block title %} | Update Profile {% endblock %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'accounts/css/account_styles.css' %}">
+{% endblock %}
+{% block content %}
+<section id="cardForm" class="update-profile py-7 py-lg-0">
+  <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+    <div class="card">
+      <h2 class="card-header text-center">Update Account Info</h2>
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+          <!-- First Name -->
+          <div class="form-floating mb-3">
+            <input type="text" name="first_name" value="{{ user.first_name }}" class="form-control" id="first_name" placeholder="First Name" required>
+            <label for="first_name">First Name</label>
+          </div>
+          <!-- Last Name -->
+          <div class="form-floating mb-3">
+            <input type="text" name="last_name" value="{{ user.last_name }}" class="form-control" id="last_name" placeholder="Last Name" required>
+            <label for="last_name">Last Name</label>
+          </div>
+          <!-- Email -->
+          <div class="form-floating mb-3">
+            <input type="email" name="email" value="{{ user.email }}" class="form-control" id="email" placeholder="Email" required>
+            <label for="email">Email</label>
+          </div>
+          <hr>
+          <div class="row text-center mx-5 mt-4 mb-3">
+            <div class="col-md-6">
+              <a href="{% url 'settings' %}" class="btn btn-primary rounded-3 te">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span class="px-2"></span>
+                Cancel
+              </a>
+            </div>
+            <div class="col-md-6">
+              <button type="submit" value="save" class="btn btn-primary rounded-3 text-nowrap mx-auto my-lg-0 my-3">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span class="px-2"></span>
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

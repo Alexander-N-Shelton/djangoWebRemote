@@ -1,0 +1,32 @@
+<!-- partials/_navigation_accordian.html -->
+{% load static %}
+  {% if spacing_class == 'cozy' %}
+    <link rel="stylesheet" href="{% static 'remote/css/cozy_spacing.css' %}?v={{ spacing_class }}">
+  {% elif spacing_class == 'compact' %}
+    <link rel="stylesheet" href="{% static 'remote/css/compact_spacing.css' %}?v={{ spacing_class }}">
+  {% else %} 
+    <link rel="stylesheet" href="{% static 'remote/css/default_spacing.css' %}?v={{ spacing_class }}">
+  {% endif %}
+<!-- Navigation Remote -->
+<div id="navAccordion" class="accordion-item">
+  <h2 class="accordion-header" id="navHeader">
+    <button class="accordion-button {% if favorites_first %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#navAccordionRemote" aria-expanded="{{ favorites_first }}" aria-controls="navAccordionRemote">
+      Navigation
+    </button>
+  </h2>
+  <div id="navAccordionRemote" class="accordion-collapse collapse {% if not favorites_first %}show{% endif %}" aria-labelledby="navHeader" data-bs-parent="#remoteAccordion">
+    <div class="accordion-body text-center">
+      <div class="navigation-wrapper {{ spacing_class }}">
+        <div class="row {% if spacing_class == 'cozy' %}g-5{% elif spacing_class == 'default' %}g-3 {% else %}g-1{% endif %}">
+          {% for button in navigation_buttons %}
+            <div class="col-6 col-md-4 col-lg-3">
+              <button id="navBtn" class="navBtn remote-button btn btn-light rounded-4 text-center" data-button-type="navigation" data-command="{{ button.keycode }}">
+                <i id="navBtnIcon" class="navBtnIcon fas {{ button.icon_class }}"></i>
+              </button>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

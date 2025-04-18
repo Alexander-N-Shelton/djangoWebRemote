@@ -1,0 +1,52 @@
+<!-- templates/base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8">
+    <meta author="Alexander Shelton" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'global/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'global/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'global/css/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'global/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'global/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'global/css/messages.css' %}">
+    <link rel="stylesheet" href="{% static 'global/css/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'global/css/footer.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <title>WebRemote {% block title %} {% endblock %}</title>
+    {% block head %} {% endblock %}
+  </head>
+
+  <body>    
+    {% block navbar %}
+    <div class="container-fluid overflow-hidden">
+      <div class="row overflow-auto">
+        <div id="sidebar" class="col-12 col-lg-2 px-lg-2 px-0 bg-dark d-flex fixed-top">
+          {% include 'partials/_sidebar.html' %}
+        </div>
+        {% endblock %}
+        <div id="mainContent" class="col d-flex flex-column  h-sm-100">
+          <main class="row overflow-auto">
+            {% block content %} {% endblock %}
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alerts -->
+    {% include 'partials/_alerts.html' %}
+
+    <!-- Footer -->
+    {% include 'partials/_footer.html' %}
+
+    <!-- Scripts -->
+    {% block scripts %} {% endblock %}
+    <script src="{% static 'global/js/script.js' %}"></script>
+    <script src="{% static 'global/js/messages.js' %}"></script>
+    <script src="{% static 'global/js/bootstrap.bundle.min.js' %}"></script>
+  </body>
+</html>

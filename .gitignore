@@ -1,0 +1,10 @@
+db.sqlite3
+__pycache__/
+node_modules/
+.pyc
+.env
+staticfiles
+package-lock.json
+_reference_docs/
+staticfiles/
+package.json

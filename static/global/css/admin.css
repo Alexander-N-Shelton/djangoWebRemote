@@ -1,0 +1,7 @@
+#nav-sidebar a {
+    text-transform: capitalize;
+}
+
+#nav-sidebar a.section {
+    font-size: 0.875rem;
+}

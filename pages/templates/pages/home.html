@@ -1,0 +1,29 @@
+<!-- pages/templates/pages/home.html -->
+{% extends 'base.html' %}
+{% block title %}| Welcome{% endblock %}
+{% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'pages/css/home.css' %}">
+{% endblock %}
+{% block content %}
+<section id="home" class="home container d-flex flex-column justify-content-center align-items-center min-vh-100">
+  <div class="row text-center">
+    <h1 class="display-2 mb-5">Welcome To WebRemote</h1>
+    <div class="col-lg-4 col-md-6 mx-auto">
+      <p class="lead">A simplified smart TV remote built for accessibility and ease of use - right from your browser.</p>
+    </div>
+  </div>
+  <!-- Social Icons -->
+  <div id="social-icons" class="mt-4">
+    <a href="https://github.com/Alexander-N-Shelton/" class="btn btn-primary mx-2 rounded-pill fs-4" target="_blank">
+      <i class="fab fa-github"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/alexander-n-shelton/" class="btn btn-primary mx-2 rounded-pill fs-4" target="_blank">
+      <i class="fab fa-linkedin"></i>
+    </a>
+    <a href="https://www.twitter.com/in/alexander-n-shelton/" class="btn btn-primary mx-2 rounded-pill fs-4" target="_blank">
+      <i class="fab fa-twitter"></i>
+    </a>
+  </div>
+</section>
+{% endblock %}

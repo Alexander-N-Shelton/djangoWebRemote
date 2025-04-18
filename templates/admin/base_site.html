@@ -1,0 +1,13 @@
+<!-- admin/base_site.html -->
+{% extends 'admin/base.html' %}
+{% load static %}
+{% block branding %}
+  <h1 class="head">
+    Web Remote Administration
+  </h1>
+{% endblock %}
+{% block extrastyle %}
+  <link rel="stylesheet" href="{% static 'global/css/admin.css' %}">
+  <link rel="stylesheet" href="{% static 'global/css/font-awesome.css' %}">
+  <link rel="icon" href="{% static 'global/favicon.ico' %}" type="image/x-icon">
+{% endblock %}

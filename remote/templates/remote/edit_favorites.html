@@ -1,0 +1,56 @@
+<!-- remote/edit_favorites.html -->
+{% extends 'base.html' %}
+{% block title %} | Edit Favorites {% endblock %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'settings/css/settings.css' %}">
+{% endblock %}
+{% block content %}
+<section id="settings" class="edit-favorites pt-7 pb-5 pt-lg-0 pb-lg-0">
+  <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+    <div class="card">
+      <h2 class="card-header text-center">Edit Favorites</h2>
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+          <div class="row text-center mt-3">
+            <h4 id="settingLabel" class="card-title">Favorite Channels</h4>
+            <p class="text-muted fs-5">Select the channels you want to display on your remote.</p>
+          </div>
+          <div class="row text-center mb-3">
+            <p class="text-muted fs-5"><span class="text-secondary">Note:</span> You can select up to 12 channels.</p>
+          </div>
+          <hr>
+          <div class="row fs-5">
+            {% for button in all_buttons %}
+              <div class="col-lg-3 col-md-4 col-sm-6 col-8 mb-2">
+                <div class="form-check ">
+                  <input class="form-check-input" type="checkbox" name="favorites" value="{{ button.id }}" id="favorite_{{ button.id }}" {% if button in current_favorites %}checked{% endif %}>
+                  <label class="form-check-label fw-semibold" for="favorite_{{ button.id }}">{{ button.name }}</label>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <hr>
+          <div class="row text-center">
+            <div class="col-md-6 my-3">
+              <a href="{% url 'settings' %}" class="btn btn-primary">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span class="px-2"></span>
+                Cancel
+              </a>
+            </div>
+            <div class="col-md-6 my-3">
+              <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span class="px-2"></span>
+                Save Favorites
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

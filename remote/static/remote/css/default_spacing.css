@@ -1,0 +1,33 @@
+/* static/css/default_spacing.css */
+.navBtn,
+.favBtn {
+   margin: 1rem;
+}
+
+/* Small devices */
+@media (min-width: 576px) {
+    .container.default {
+        max-width: 520px !important;
+    }
+}
+
+/* Medium devices */
+@media (min-width: 768px) {
+    .container.default {
+        max-width: 720px !important;
+    }
+}
+
+/* Large devices */
+@media (min-width: 992px) {
+    .container.default {
+        max-width: 920px !important;
+    }
+}
+
+/* XX-Large devices */
+@media (min-width: 1400px) {
+    .container.default {
+        max-width: 1120px !important;
+    }
+}

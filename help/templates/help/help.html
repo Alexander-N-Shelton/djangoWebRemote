@@ -1,0 +1,366 @@
+<!-- pages/templates/pages/help.html -->
+{% extends 'base.html' %}
+{% block title %}| Help {% endblock %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'help/css/help.css' %}">
+{% endblock %}
+{% block content %}
+<div id="help">
+  <!-- Help Center Section -->
+  <section id="helpCenter" class="help pt-4 pt-lg-0">
+    <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+      <h1 class="display-3 text-center">Help Center</h1>
+      <div class="row text-center">
+        <p class="lead mt-3">Welcome to the Help Center!</p>
+        <p class="fs-5 text-muted mt-3">Here you can find resources to assist you with using the app.</p>
+      </div>
+      <!-- Help Pages Pagination  -->
+      <ul class="pagination list-unstyled  position-fixed bottom-0 mb-2">
+        <li class="list-item page-item">
+          <a class="page-link btn btn-primary text-nowrap" href="#helpCenter">
+            <i class="bi bi-house-fill d-md-none d-inline"></i>
+            <span class="d-md-inline d-none">Help Center</span>
+          </a>
+        </li>
+        <li class="list-item page-item">
+          <a class="page-link btn btn-primary text-nowrap" href="#stepByStep">
+            <i class="bi bi-book-fill d-md-none d-inline"></i>
+            <span class="d-md-inline d-none">Step-By-Step</span>
+          </a>
+        </li>
+        <li class="list-item page-item">
+          <a class="page-link btn btn-primary text-nowrap" href="#videoTutorials">
+            <i class="bi bi-play-btn-fill d-md-none d-inline"></i>
+            <span class="d-md-inline d-none">Video Tutorials</span>
+          </a>
+        </li>
+        <li class="list-item page-item">
+          <a class="page-link btn btn-primary text-nowrap" href="#troubleshooting">
+            <i class="bi bi-tools d-md-none d-inline"></i>
+            <span class="d-md-inline d-none">Troubleshooting</span>
+          </a>
+        </li>
+        <li class="list-item page-item">
+          <a class="page-link btn btn-primary text-nowrap" href="#faqs">
+            <i class="bi bi-question-circle-fill d-md-none d-inline"></i>
+            <span class="d-md-inline d-none">FAQs</span>
+          </a>
+        </li>
+        <li class="list-item page-item">
+          <a class="page-link btn btn-primary text-nowrap" href="#contact">
+            <i class="bi bi-envelope-fill d-md-none d-inline"></i>
+            <span class="d-md-inline d-none">Contact Us</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <!-- Step-By-Step Section -->
+  <section id="stepByStep" class="help step-by-step pt-6 pt-lg-0">
+    <!-- Step-By-Step Section -->
+    <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+      <div class="row text-center">
+        <h1 class="display-2">Step-By-Step Walkthroughs</h1>
+        <p class="lead mt-4">Detailed guides to help you navigate the app and its features.</p>
+      </div>
+      <div class="row text-center">
+        <div class="col-lg-6">
+          <!-- Getting Started -->
+          <div class="row mt-5">
+            <div class="col-10 offset-1">
+              <h3 id="gettingStarted" class="fw-bold">Getting Started</h3>
+              <p class="text-muted fs-5">Learn how to get started with the app, including registering for an account, initial setup, and basic usage.</p>
+              <a href="#stepByStep" class="btn btn-primary mx-auto">Read More</a>
+            </div>
+          </div>    
+        </div>
+        <div class="col-lg-6">
+          <!-- Connecting Your TV -->          
+          <div class="row mt-5">
+            <div class="col-10 offset-1">
+              <h3 id="connectingYourTV" class="fw-bold">Connecting Your TV</h3>
+              <p class="text-muted fs-5">Follow a step-by-step guide that provides a complete walkthrough for connecting your TV to the app for the first time.</p>
+              <a href="#stepByStep" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <!-- Using the Remote -->
+        <div class="col-lg-6">
+          <div class="row mt-5">
+            <div class="col-10 offset-1">
+              <h3 id="settingLabel" class="fw-bold">Using the Remote</h3>
+              <p class="text-muted fs-5">A guide to using the remote control features of the app effectively.</p>
+              <a href="#stepByStep" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+        <!-- Adding Your Favorites -->
+        <div class="col-lg-6">
+          <div class="row mt-5">
+            <div class="col-10 offset-1">
+              <h3 id="addingFavorites" class="fw-bold">Adding Your Favorites</h3>
+              <p class="text-muted fs-5">Learn how to add your favorite shows and movies to your list for easy access.</p>
+              <a href="#stepByStep" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Video Tutorials Section -->
+  <section id="videoTutorials" class="help video-tutorials pt-6 pt-lg-0">
+    <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+      <div class="row text-center">
+        <h1 class="display-2">Video Tutorials</h1>
+        <p class="lead mt-4">Visual guides to help you navigate the app and its features.</p>
+      </div>
+      <div class="row text-center my-3">
+        <!-- Getting Started -->
+        <div class="col-lg-4 mx-auto mb-2">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title">Getting Started</h3>
+              <div class="card-text">Learn the basics of using the app with this introductory video.</div>
+              <a href="#videoTutorials" class="btn btn-sm btn-primary mt-3">Watch Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Setting Up Your Device -->
+        <div class="col-lg-4 mx-auto mb-2">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title">Setting Up Your Device</h3>
+              <div class="card-text">Step-by-step instructions for setting up your device with the app.</div>
+              <a href="#videoTutorials" class="btn btn-sm btn-primary mt-3">Watch Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row text-center my-3">
+        <!-- Using the Remote -->
+        <div class="col-lg-4 mx-auto mb-2">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title">Using the Remote</h3>
+              <div class="card-text">A guide to effectively using the remote control features of the app.</div>
+              <a href="#videoTutorials" class="btn btn-sm btn-primary mt-3">Watch Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Managing Favorites -->
+        <div class="col-lg-4 mx-auto mb-2">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title">Managing Favorites</h3>
+              <div class="card-text">A guide to help you manage your favorites in the app.</div>
+              <a href="#videoTutorials" class="btn btn-sm btn-primary mt-3">Watch Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Troubleshooting Section -->
+  <section id="troubleshooting" class="help troubleshooting pt-6 pt-lg-0">
+    <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+      <div class="row text-center">
+        <h1 class="display-2">Troubleshooting Guides</h1>
+        <p class="lead mt-4">Solutions to common issues you may encounter.</p>
+      </div>
+      <div class="row text-center">      
+        <!-- Connection Issues -->
+        <div class="col-lg-6">
+          <div class="row mt-5">
+            <div class="col-10 offset-1">
+              <h3 id="gettingStarted" class="fw-bold">Connection Issues</h3>
+              <p class="text-muted fs-5">Troubleshooting common connection and network-related issues.</p>
+              <a href="#troubleshooting" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+        <!-- Device Not Responding -->
+        <div class="col-lg-6">
+          <div class="row mt-5">
+            <div class="col-10 offset-1">
+              <h3 id="deviceNotResponding" class="fw-bold">Device Not Responding</h3>
+              <p class="text-muted fs-5">Troubleshooting device responsiveness issues.</p>
+              <a href="#troubleshooting" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <!-- Buttons Not Functioning -->
+        <div class="col-lg-6">
+          <div class="row mt-5">
+            <div class="col-10 offset-1">
+              <h3 id="buttonsNotFunctioning" class="fw-bold">Buttons Not Functioning</h3>
+              <p class="text-muted fs-5">Troubleshooting common issues related to buttons and favorites.</p>
+              <a href="#troubleshooting" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+        <!-- Additional Troubleshooting -->
+        <div class="col-lg-6">
+          <div class="row mt-5">
+            <div class="col-10 offset-1">
+              <h3 id="additionalTroubleshooting" class="fw-bold">Additional Troubleshooting</h3>
+              <p class="text-muted fs-5">Explore more tips for resolving various issues.</p>
+              <a href="#troubleshooting" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- FAQs Section -->
+  <section id="faqs" class="help faqs pt-6 pt-lg-0">
+    <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+      <div class="row text-center">
+        <h1 class="display-3">Frequently Asked Questions</h1>
+        <p class="fs-4 text-muted mt-3 mb-4">Answers to common questions about the app and its features.</p>
+      </div>
+      <div class="row text-center">
+        <!-- Forgot Password -->
+        <div class="col-lg-5 mx-auto my-auto">
+          <div class="card mb-4 mb-lg-5">
+            <h5 class="card-header">Reset a Forgotten Password</h5>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-2 text-end text-secondary">1</div>
+                <div class="col-10 text-start"><p class="card-text">Open the app and go to the login page.</p></div>
+              </div>
+              <div class="row">
+                <div class="col-2 text-end text-secondary">2</div>
+                <div class="col-10 text-start"><p class="card-text">Click on "Reset Password"</p></div>
+              </div>
+              <div class="row">
+                <div class="col-2 text-end text-secondary">3</div>
+                <div class="col-10 text-start"><p class="card-text">Enter the email address associated with your account.</p></div>
+              </div>
+              <div class="row">
+                <div class="col-2 text-end text-secondary">4</div>
+                <div class="col-10 text-start"><p class="card-text">Check your email for a password reset link.</p></div>
+              </div>
+              <div class="row">
+                <div class="col-2 text-end text-secondary">5</div>
+                <div class="col-10 text-start"><p class="card-text">Follow the instructions in the email to reset your password.</p></div>
+              </div>
+            </div>
+          </div>
+        </div> 
+        <!-- Change Password -->
+        <div class="col-lg-5 mx-auto mb-2 my-auto">
+          <div class="card mb-4 mb-lg-5">
+            <h5 class="card-header">Changing Your Current Password</h5>
+            <div class="card-body">
+              <div class="row mt-2">
+                <div class="col-2 text-end text-secondary">1</div>
+                <div class="col-10 text-start"><p class="card-text">Open the app and log in.</p></div>
+              </div>
+              <div class="row">
+                <div class="col-2 text-end text-secondary">2</div>
+                <div class="col-10 text-start"><p class="card-text">Go to "Settings" then "Account Settings".</p></div>
+              </div>
+              <div class="row">
+                <div class="col-2 text-end text-secondary">3</div>
+                <div class="col-10 text-start"><p class="card-text">Click on "Change Password".</p></div>
+              </div>
+              <div class="row">
+                <div class="col-2 text-end text-secondary">4</div>
+                <div class="col-10 text-start"><p class="card-text">Enter your current password and the new password.</p></div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-2 text-end text-secondary">5</div>
+                <div class="col-10 text-start"><p class="card-text">Click "Save Changes" to apply the new password.</p></div>
+              </div>
+            </div>
+          </div>
+        </div> 
+        <!-- Update Profile -->
+        <div class="col-lg-5 mx-auto mb-2">
+          <div class="card mb-4 mb-lg-5">
+            <h5 class="card-header">Updating Your Profile</h5>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-2 text-end text-secondary">1</div>
+                <div class="col-10 text-start"><p class="card-text">Open the app and log in to your account.</p></div>
+              </div>
+              <div class="row">
+                <div class="col-2 text-end text-secondary">2</div>
+                <div class="col-10 text-start"><p class="card-text">Go to "Settings" then "Account Settings".</p></div>
+              </div>
+              <div class="row">
+                <div class="col-2 text-end text-secondary">3</div>
+                <div class="col-10 text-start"><p class="card-text">Click on "Update Profile" to update your current information.</p></div>
+              </div>
+              <div class="row">
+                <div class="col-2 text-end text-secondary">4</div>
+                <div class="col-10 text-start"><p class="card-text">Enter the new information you want to update.</p></div>
+              </div>
+              <div class="row">
+                <div class="col-2 text-end text-secondary">5</div>
+                <div class="col-10 text-start"><p class="card-text">Click "Save Changes" to apply the updates.</p></div>
+              </div>
+            </div>
+          </div>
+        </div> 
+        <!-- Contact Support -->
+        <div class="col-lg-5 mx-auto mb-2">
+          <div class="card mb-4 mb-lg-5">
+            <h5 class="card-header">Contacting Support</h5>
+            <div class="card-body">
+              <div class="row mx-auto">
+                <p class="card-text">You can contact support by clicking the "Contact Us" button on the Help page or emailing us directly at support@example.com.</p>
+                <div class="col mx-auto mt-2">
+                  <a href="{% url 'contact' %}" class="btn btn-primary rounded-3 mx-auto">Contact Us</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
+      </div>
+    </div>
+  </section>
+  <!-- Contact Section -->    
+  <section id="contact" class="help contact py-6 py-lg-0">
+    <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+      <div class="row text-center">
+        <h1 class="display-2">Contact Us</h1>
+        <p class="lead mt-3">If you have questions, feedback, or run into issues, feel free to reach out.</p>
+      </div>
+      <div class="row text-center my-3">
+        <div class="col-lg-6 mx-auto">
+          <p class="fs-5 text-muted">
+            This application was built as a personal project to help others simplify their Smart TV experience. 
+            I’m happy to share it with you. If you have questions, feedback, or run into any issues, feel free to reach out.
+          </p>
+        </div>
+      </div>
+      <div class="row text-center text-warning">
+        <div class="col-8 mx-auto text-warning">
+          <i class="bi bi-exclamation-square d-block" style="font-size: 2rem;"></i>
+          Note:
+        </div>
+        <div class="col-6 mx-auto text-center text-warning">
+          <p>
+            As of right now this is a solo project, and while I’ll do my best to help, I may not be able to respond right away. 
+            Thanks for your patience and understanding!
+          </p>
+        </div>
+      </div>
+      <div class="row my-5">
+        <div class="col mx-auto">
+        <a href="{% url 'contact' %}" class="btn btn-primary text-nowrap">
+          <i class="bi bi-envelope-fill me-2"></i>
+          Email Support
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

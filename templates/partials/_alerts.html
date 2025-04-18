@@ -1,0 +1,39 @@
+<!-- templates/partials/_alerts.html -->
+{% if messages %}
+  {% for message in messages %}
+    <div class="modal fade {{ message.tags }}" id="systemMessageModal{{ forloop.counter }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="{{ message.tag }}Modal" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div id="{{ message.tags }}" class="modal-content bg-{{ message.tags }}-subtle">
+          <div class="modal-body">
+            <div class="d-flex text-{{ message.tags }}-emphasis">
+              <div class="p-1 flex-grow-1 text-center fw-bold fs-2">
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                  Error
+                {% else %}
+                  {{ message.tags|title }}
+                {% endif %}
+              </div>
+              <div class="p-1">
+                <button class="btn-close btn-outline-{{ message.tags }}" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+            </div>
+            <div class="row mt-5">
+              <div class="text-center fs-5 mt-2">
+                {{ message }}
+              </div>
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col-6 offset-3">
+              <div class="d-grid gap-1 mt-3">
+                <button type="button" class="btn btn-{{ message.tags }} btn-lg" id="{{ message.tags }}Button" data-bs-dismiss="modal">
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endif %}

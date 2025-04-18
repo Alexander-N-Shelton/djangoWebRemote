@@ -1,0 +1,14 @@
+/* static/global/css/styles.css */
+.btn:hover {
+  background-color: rgb(32, 1, 82) !important;
+  transition: background-color 0.5s ease in-out;
+  color: var(--bs-secondary) !important;
+}
+
+.card-body {
+  background: linear-gradient(0deg, rgba(32, 1, 82, 0.2), rgba(43, 1, 43, 0.2)) !important;
+}
+
+.card-header {
+  box-shadow: 0 2px 5px rgba(128, 0, 128, 0.5);
+}

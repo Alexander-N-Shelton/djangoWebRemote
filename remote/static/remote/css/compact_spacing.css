@@ -1,0 +1,41 @@
+/* static/css/comapct_spacing.css */
+.navBtn,
+.favBtn {
+    margin: 0.75rem;
+}
+
+@media (max-width: 575.98px) {
+    .container.compact {
+        max-width: 520px !important;
+    }
+}
+
+/* Small devices */
+@media (min-width: 576px) {
+    .container.compact {
+        max-width: 470px !important;
+    }
+}
+
+/* Medium devices */
+@media (min-width: 768px) {
+    .container.compact {
+        max-width: 670px !important;
+    }
+
+}
+
+/* Large devices */
+@media (min-width: 992px) {
+    .container.compact {
+        max-width: 870px !important;
+    }
+}
+
+/* XX-Large devices */
+@media (min-width: 1400px) {
+
+    .container.compact {
+        max-width: 920px !important;
+    }
+}

@@ -1,0 +1,14 @@
+/* static/global/css/messages.css */
+
+.modal.success {
+  background: rgba(var(--bs-success), 0.8);
+}
+.modal.error {
+  background: rgba(var(--bs-danger), 0.8);
+}
+.modal.warning {
+  background: rgba(var(--bs-warning), 0.8);
+}
+.modal.info {
+  background: rgba(var(--bs-info), 0.8);
+}
