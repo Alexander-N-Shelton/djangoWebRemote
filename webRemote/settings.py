@@ -5,7 +5,7 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fallback_dev_key')
 
 if not SECRET_KEY:
     raise RuntimeError("DJANGO_SECRET_KEY is not set.")

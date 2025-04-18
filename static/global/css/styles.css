@@ -12,3 +12,18 @@
 .card-header {
   box-shadow: 0 2px 5px rgba(128, 0, 128, 0.5);
 }
+
+@media (max-width: 991.98px) {
+  #mainContent {
+    padding-top: 75px;
+  }
+  #cardForm,
+  #home,
+  #contribute,
+  #dualRemote,
+  #singleRemote,
+  #settings {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}

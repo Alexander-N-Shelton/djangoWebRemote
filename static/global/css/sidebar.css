@@ -8,57 +8,16 @@
 
   #sidebar {
     height: 100vh;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
     box-shadow: 10px 0 15px -5px rgba(128, 0, 128, 0.5);
-    max-width: 200px;
-  }
-
-  #sidebar .navbar-brand {
-    background-color: var(--bs-dark) !important;
-    font-family: "New Rocker";
-    color: var(--bs-secondary) !important;
     font-size: 1.3rem;
-    font-weight: bold;
+    width: 200px;
   }
 
   #sidebar .nav-link {
-    background-color: var(--bs-dark) !important;
-    color: var(--bs-info);
-    text-wrap: nowrap !important;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  #sidebar .nav-link:hover {
-    background-color: var(--bs-secondary) !important;
-    color: var(--bs-dark) !important;
-    box-shadow: 0 0 5px var(--bs-dark) !important;
-    transform: scale(1.1);
-    transition: all 2s ease-in-out;
-  }
-
-  #sidebar .nav-link.active {
-    background-color: var(--bs-dark) !important;
-    color: var(--bs-secondary) !important;
-    box-shadow: 0 0 5px var(--bs-secondary) !important;
-    animation-name: animate1;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-    /* Ensures the animation's final state persists  */
-  }
-
-  #sidebar .nav-link.active:hover {
-    background-color: var(--bs-dark) !important;
-    color: var(--bs-secondary) !important;
-    box-shadow: 0 0 5px var(--bs-secondary) !important;
-    text-wrap: nowrap !important;
-  }
-
-  @keyframes animate1 {
-    to {
-      transform: scale(1.2);
-    }
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
   }
 }
 
@@ -68,5 +27,54 @@
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     box-shadow: 0px 10px 15px -5px rgba(128, 0, 128, 0.5);
+}
+
+  #sidebar .nav-link {
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+
+  }
+  #sidebar #dropdownUser1 {
+    margin-right: 0.25rem;
+  }
+}
+
+#sidebar {
+  font-size: 1.3rem;
+}
+
+#sidebar .navbar-brand {
+  font-family: "New Rocker";
+  color: var(--bs-secondary) !important;
+  font-weight: bold;
+}
+
+#sidebar .nav-link:hover {
+  background-color: var(--bs-secondary) !important;
+  color: var(--bs-dark) !important;
+  box-shadow: 0 0 5px var(--bs-dark) !important;
+  transform: scale(1.1);
+  transition: all 2s ease-in-out;
+}
+
+#sidebar .nav-link.active {
+  background-color: var(--bs-dark) !important;
+  color: var(--bs-secondary) !important;
+  box-shadow: 0 0 5px var(--bs-secondary) !important;
+  animation-name: animate1;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+#sidebar .nav-link.active:hover {
+  background-color: var(--bs-dark) !important;
+  color: var(--bs-secondary) !important;
+  box-shadow: 0 0 5px var(--bs-secondary) !important;
+  text-wrap: nowrap !important;
+}
+
+@keyframes animate1 {
+  to {
+    transform: scale(1.2);
   }
 }

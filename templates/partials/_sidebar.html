@@ -1,42 +1,42 @@
 <div class="d-flex flex-lg-column flex-row flex-grow-1 align-items-center px-lg-1 px-2 py-lg-4 py-3">
   <a href="/" class="navbar-brand d-flex align-items-center text-center pb-lg-3 mb-lg-0 text-decoration-none">
-    <i class="bi bi-dpad mx-1"></i><span class="d-none d-lg-inline">WebRemote</span>
+    <span class="d-lg-none d-block">WR</span></i><span class="d-none d-lg-inline">WebRemote</span>
   </a>
   <hr>
   <ul class="nav nav-pills flex-lg-column flex-row flex-nowrap flex-shrink-1 flex-lg-grow-0 flex-grow-1 mb-lg-auto mb-0 justify-content-center align-items-center" id="menu">
     <!-- Home -->
     <li class="nav-item">
       {% url 'home' as home %}
-      <a href="{% url 'home' %} " class="nav-link rounded-3 {% if request.get_full_path == home %}active{% endif %}">
-        <i class="bi bi-house-fill"></i><span class="ms-1 d-none d-lg-inline">Home</span>
+      <a href="{% url 'home' %} " class="nav-link text-info rounded-3 {% if request.get_full_path == home %}active{% endif %}">
+        <i class="bi bi-house-fill me-lg-2"></i><span class="ms-1 d-none d-lg-inline">Home</span>
       </a>
     </li>
     <!-- About -->
     <li class="nav-item">
       {% url 'about' as about %}
-      <a href="{% url 'about' %}" class="nav-link rounded-3 {% if request.get_full_path == about %}active{% endif %}">
-        <i class="bi bi-info-square-fill me-2"></i><span class="ms-1 d-none d-lg-inline">About</span>
+      <a href="{% url 'about' %}" class="nav-link text-info rounded-3 {% if request.get_full_path == about %}active{% endif %}">
+        <i class="bi bi-info-square-fill me-lg-2"></i><span class="ms-1 d-none d-lg-inline">About</span>
       </a>
     </li>
     <!-- Remote -->
     <li class="nav-item">
       {% url 'remote_control' as remote %}
-      <a href="{% url 'remote_control' %}" class="nav-link rounded-3 {% if request.get_full_path == remote %}active{% endif %}">
-        <i class="bi bi-dpad-fill me-2"></i><span class="ms-1 d-none d-lg-inline">Remotes</span>
+      <a href="{% url 'remote_control' %}" class="nav-link text-info rounded-3 {% if request.get_full_path == remote %}active{% endif %}">
+        <i class="bi bi-dpad-fill me-lg-2"></i><span class="ms-1 d-none d-lg-inline">Remotes</span>
       </a>
     </li>
     <!-- Settings -->
     <li class="nav-item">
       {% url 'settings' as settings %}
-      <a href="{% url 'settings' %}" class="nav-link rounded-3 {% if request.get_full_path == settings %}active{% endif %}">
-        <i class="bi bi-sliders me-2"></i><span class="ms-1 d-none d-lg-inline">Settings</span>
+      <a href="{% url 'settings' %}" class="nav-link text-info rounded-3 {% if request.get_full_path == settings %}active{% endif %}">
+        <i class="bi bi-sliders me-lg-2"></i><span class="ms-1 d-none d-lg-inline">Settings</span>
       </a>
     </li>
     <!-- Help -->
     <li class="nav-item">
       {% url 'help' as help %}
-      <a href="{% url 'help' %}"  id="navLink" class="nav-link rounded-3 {% if request.get_full_path ==  help %}active{% endif %}">
-        <i class="bi bi-question-circle-fill me-2"></i><span class="ms-1 d-none d-lg-inline">Help</span>
+      <a href="{% url 'help' %}"  id="navLink" class="nav-link text-info rounded-3 {% if request.get_full_path ==  help %}active{% endif %}">
+        <i class="bi bi-question-circle-fill me-lg-2"></i><span class="ms-1 d-none d-lg-inline">Help</span>
       </a>
     </li>
   </ul>
