@@ -20,6 +20,7 @@ echo "Installing requirements..."
 pip install -r requirements.txt
 
 echo "Make and Apply Django migrations..."
+python manage.py makemigrations
 python manage.py migrate
 
 echo "Adding Navigation Buttons..."
