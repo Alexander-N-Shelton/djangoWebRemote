@@ -19,7 +19,7 @@ source venv/bin/activate
 echo "Installing requirements..."
 pip install -r requirements.txt
 
-echo "Applying Django migrations..."
+echo "Make and Apply Django migrations..."
 python manage.py migrate
 
 echo "Adding Navigation Buttons..."
