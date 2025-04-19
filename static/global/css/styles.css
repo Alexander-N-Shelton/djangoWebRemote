@@ -1,4 +1,12 @@
 /* static/global/css/styles.css */
+@font-face {
+  font-family: "Poetsen One";
+  src: url("../fonts/PoetsenOne-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Amethysta";
+  src: url("../fonts/Amethysta-Regular.ttf") format("truetype");
+}
 .btn:hover {
   background-color: rgb(32, 1, 82) !important;
   transition: background-color 0.5s ease in-out;
