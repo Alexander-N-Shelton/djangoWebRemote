@@ -1,0 +1,16 @@
+/* webRemote/docs/css/styles.css */
+body {
+  font-family: 'Poetsen One', sans-serif; 
+  margin: 0; 
+  padding: 0;
+}
+
+h1 {
+  font-family: "Poetsen One";
+}
+
+@media (max-height: 1199.98px) {
+  main {
+    margin-bottom: 200px !important;
+  }
+}
