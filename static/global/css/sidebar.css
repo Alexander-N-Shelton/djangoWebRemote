@@ -39,6 +39,12 @@
   }
 }
 
+@media (max-width: 450px) {
+  #sidebar {
+    font-size: 1rem !important;
+  }
+}
+
 #sidebar {
   font-size: 1.3rem;
 }

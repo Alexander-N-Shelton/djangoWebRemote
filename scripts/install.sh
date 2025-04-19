@@ -4,13 +4,13 @@ echo "Updating system and installing dependencies..."
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y python3 python3-pip python3-venv git android-tools-adb
 
-echo "Setting up WebRemote in /opt/web-remote..."
+echo "Setting up Django WebRemote in /opt/djangoWebRemote..."
 sudo mkdir -p /opt/web-remote
-sudo chown $USER:$USER /opt/web-remote
-cd /opt/web-remote
+sudo chown $USER:$USER /opt/djangoWebRemote
+cd /opt/djangoWebRemote
 
-echo "Cloning webRemote..."
-git clone https://github.com/Alexander-N-Shelton/webRemote.git .
+echo "Cloning Django WebRemote..."
+git clone https://github.com/Alexander-N-Shelton/djangoWebRemote.git .
 
 echo "Creating Python virtual environment..."
 python3 -m venv venv
@@ -41,27 +41,27 @@ DJANGO_SECRET_KEY=$(openssl rand -hex 32)
 EOF
 
 echo "Creating systemd service..."
-sudo tee /etc/systemd/system/web-remote.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/django-web-remote.service > /dev/null <<EOF
 [Unit]
 Description=Web Remote Django Service
 After=network.target
 
 [Service]
 User=$USER
-WorkingDirectory=/opt/web-remote
-EnvironmentFile=/opt/web-remote/.env
-ExecStart=/opt/web-remote/venv/bin/python manage.py runserver 0.0.0.0:8000
+WorkingDirectory=/opt/djangoWebRemote
+EnvironmentFile=/opt/djangoWebRemote/.env
+ExecStart=/opt/djangoWebRemote/venv/bin/python manage.py runserver 0.0.0.0:8000
 Restart=always
 
 [Install]
 WantedBy=multi-user.target
 EOF
 
-echo "Enabling and starting the web-remote service..."
+echo "Enabling and starting the django-web-remote service..."
 sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
-sudo systemctl enable web-remote
-sudo systemctl start web-remote
+sudo systemctl enable djang-web-remote
+sudo systemctl start django-web-remote
 
 echo "Allowing traffic on port 8000 through UFW (if active)..."
 sudo ufw allow 8000

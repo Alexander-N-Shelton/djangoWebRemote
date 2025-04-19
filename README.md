@@ -1,6 +1,7 @@
-# webRemote
+# Django WebRemote
 
-A web-based Smart TV remote control built with Django, designed to run locally on a Raspberry Pi or any Linux-based system with ADB installed. This project provides a touchscreen-friendly interface to control Smart TVs over your local network.
+A web-based Smart TV remote control built with Django, designed to run locally on a Raspberry Pi or any Linux-based system with ADB installed.
+This project provides a touchscreen-friendly interface to control Smart TVs over your local network.
 
 ---
 
@@ -31,18 +32,20 @@ Download the _install.sh_ script.
 Give the script the proper permissions to execute.
 
 ```Bash
-chmod +x setup_web_remote.sh
+chmod +x install.sh
+# Use sudo if you need admin privileges
+sudo chmod +x install.sh
 ```
 
 After installation, open your browser and go to:
 
-```http://<your-ip>:8000```
+`http://<your-ip>:8000`
 
 ## 🛠 Admin Setup
 
 A default superuser is created during setup. You can log in at:
 
-```http://<your-ip>:8000/admin```
+`http://<your-ip>:8000/admin`
 
 ## Notes
 

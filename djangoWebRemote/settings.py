@@ -1,4 +1,4 @@
-# webRemote/settings.py
+# djangoWebRemote/settings.py
 
 from pathlib import Path
 import os
@@ -40,7 +40,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "webRemote.urls"
+ROOT_URLCONF = "djangoWebRemote.urls"
 
 # Templates
 TEMPLATES = [
@@ -61,7 +61,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "webRemote.wsgi.application"
+WSGI_APPLICATION = "djangoWebRemote.wsgi.application"
 
 # Database
 DATABASES = {
