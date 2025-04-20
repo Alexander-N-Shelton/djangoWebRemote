@@ -4,9 +4,35 @@ body {
   margin: 0; 
   padding: 0;
 }
+header{
+  overflow: hidden;
+  background: #00242B;
+  color: #7DE38D;
+}
+@media (max-width: 575.98px) {
+  header {
+    margin-top: -10px;
+    height: 125px;
+  }
+}
+@media (min-width: 576px) and (max-width: 991.98px) {
+  header {
+    margin-top: -15px;
+    height: 150px;
+  }
+}
 
+@media (min-width: 992px){
+  img {
+    height: 1000px;
+  }
+  header {
+    margin-top: -5px;
+    height: 175px;
+  }
+}
 h1 {
-  font-family: "Poetsen One";
+  font-family: "Salsa", serif;
 }
 
 @media (max-height: 1199.98px) {
@@ -14,3 +40,36 @@ h1 {
     margin-bottom: 200px !important;
   }
 }
+
+.poetsen-one-regular {
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.lugrasimo-regular {
+  font-family: "Lugrasimo", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.aladin-regular {
+  font-family: "Aladin", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+.akaya-telivigala-regular {
+  font-family: "Akaya Telivigala", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+.salsa-regular {
+  font-family: "Salsa", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.averia-serif-libre-regular {
+  font-family: "Averia Serif Libre", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
