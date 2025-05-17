@@ -32,9 +32,9 @@ Download the _install.sh_ script.
 Give the script the proper permissions to execute.
 
 ```Bash
-chmod +x install.sh
+chmod 755 install.sh
 # Use sudo if you need admin privileges
-sudo chmod +x install.sh
+sudo chmod 755 install.sh
 ```
 
 After installation, open your browser and go to:
