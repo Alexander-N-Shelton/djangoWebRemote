@@ -5,7 +5,7 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install -y python3 python3-pip python3-venv git android-tools-adb
 
 echo "Setting up Django WebRemote in /opt/djangoWebRemote..."
-sudo mkdir -p /opt/web-remote
+sudo mkdir -p /opt/djangoWebRemote
 sudo chown $USER:$USER /opt/djangoWebRemote
 cd /opt/djangoWebRemote
 
@@ -36,7 +36,7 @@ echo "Creating Django superuser..."
 echo -e "Default administrator:\nusername = admin\npassword = password"
 python manage.py shell < scripts/create_default_superuser.py
 
-sudo tee /opt/web-remote/.env > /dev/null <<EOF
+sudo tee /opt/djangoWebRemote/.env > /dev/null <<EOF
 DJANGO_SECRET_KEY=$(openssl rand -hex 32)
 EOF
 
@@ -60,8 +60,7 @@ EOF
 echo "Enabling and starting the django-web-remote service..."
 sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
-sudo systemctl enable djang-web-remote
-sudo systemctl start django-web-remote
+sudo systemctl enable --now django-web-remote
 
 echo "Allowing traffic on port 8000 through UFW (if active)..."
 sudo ufw allow 8000
