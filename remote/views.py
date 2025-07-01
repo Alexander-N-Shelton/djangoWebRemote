@@ -1,6 +1,7 @@
 # remote/views.py
 import json
 import subprocess
+import logging
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -10,6 +11,7 @@ from accounts.models import UserProfile, FavoriteButton
 from .models import NavigationButton
 from settings.models import UserSettings, TVConnection
 
+logger = logging.getLogger('remote')
 
 @login_required
 def remote_view(request):
@@ -68,6 +70,7 @@ def trigger_button(request):
         print(data)
         if not command:
             # Error 400
+            logger.error('400: No command provided')
             return JsonResponse(
                 {
                     'status': 'error', 
@@ -80,6 +83,7 @@ def trigger_button(request):
             active_tv = TVConnection.objects.filter(user=request.user, is_active=True).first()
         except TVConnection.DoesNotExist:
             # Error 404
+            logger.error('404: No active TV found.')
             return JsonResponse(
                 {
                     'status': 'error', 
@@ -89,6 +93,7 @@ def trigger_button(request):
             )
         except TVConnection.MultipleObjectsReturned:
             # Error 400
+            logger.error('400: Multiple active TVs found.')
             return JsonResponse(
                 {
                     'status': 'error', 
@@ -138,6 +143,7 @@ def trigger_button(request):
                 ]
         else:
             # Error 400
+            logger.error('400: Invalid button type')
             return JsonResponse(
                 {
                     'status': 'error', 
@@ -150,6 +156,7 @@ def trigger_button(request):
         try: 
             subprocess.run(adb_command)
             # Success
+            logger.info(f'{adb_command}')
             return JsonResponse(
                 {
                     'status': 'success', 
@@ -158,6 +165,7 @@ def trigger_button(request):
             )
         except subprocess.CalledProcessError as e:
             # Error 500
+            logger.error(f'500: {str(e)}')
             return JsonResponse(
                 {
                     'status': 'error', 
@@ -166,6 +174,7 @@ def trigger_button(request):
                 status=500
             )
     # Error 400
+    logger.error('400: Invalid request')
     return JsonResponse(
         {
             'status': 'error', 

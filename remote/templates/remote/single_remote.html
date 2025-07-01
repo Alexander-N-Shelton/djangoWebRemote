@@ -14,23 +14,23 @@
 {% endif %}
 {% endblock %}
 {% block content %}
-<section id="singleRemote" class="singleRemote min-vh-100 pt-5">
+<section id="singleRemote" class="singleRemote min-vh-100 pt-3">
   <div class="container border-bottom">
     <ul class="nav nav-tabs d-flex justify-content-center">  
       <li class="nav-item mx-auto">
-        <a href="#navRemoteContainer" id="navTab" class="nav-link fs-5 {% if not favorites_first %} active {% endif %}" data-bs-toggle="tab">Navigation</a>
+        <a href="#navRemoteContainer" id="navTab" class="nav-link fs-6 {% if not favorites_first %} active {% endif %}" data-bs-toggle="tab">Navigation</a>
       </li>
       <li class="nav-item mx-auto">
-        <a href="#favRemoteContainer" id="favTab" class="nav-link fs-5 {% if favorites_first %} active {% endif %}" data-bs-toggle="tab">Favorites</a>
+        <a href="#favRemoteContainer" id="favTab" class="nav-link fs-6 {% if favorites_first %} active {% endif %}" data-bs-toggle="tab">Favorites</a>
       </li>
     </ul>
   </div>
   <div class="container {{ spacing_class }}">
-    <div class="tab-content mb-5">
+    <div class="tab-content mb-3">
       <!-- Navigation -->
       <div id="navRemoteContainer" class="tab-pane fade {% if not favorites_first %}show active {% endif %}">
-        <div class="card mt-5" id="navCard">
-          <h2 class="card-header text-center">Navigation</h2>
+        <div class="card mt-3" id="navCard">
+          <h4 class="card-header text-center">Navigation</h4>
           <div class="card-body text-center">
             <div class="row {% if spacing_class == 'cozy' %}g-5{% elif spacing_class == 'default' %}g-3 {% else %}g-1{% endif %}">
               {% for button in navigation_buttons %}
@@ -46,8 +46,8 @@
       </div>
       <!-- Favorites -->
       <div id="favRemoteContainer" class="tab-pane fade {% if favorites_first %}show active {% endif %}">
-        <div class="card text-center mt-5" id="favCard">
-          <h2 class="card-header">Favorites</h2>
+        <div class="card text-center mt-3" id="favCard">
+          <h4 class="card-header">Favorites</h4>
           <div class="card-body">
             <div class="row {% if spacing_class == 'cozy' %}g-5{% elif spacing_class == 'default' %}g-3 {% else %}g-1{% endif %}">      
               {% for button in favorite_buttons %}

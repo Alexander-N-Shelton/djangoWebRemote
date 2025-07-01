@@ -1,8 +1,7 @@
 {% load static %}
-<div class="d-flex flex-lg-column flex-row flex-grow-1 align-items-center px-lg-1 px-2 py-lg-4 py-3">
-  <a href="https://Alexander-N-Shelton.github.io/djangoWebRemote/" class="navbar-brand d-flex align-items-center text-center mb-lg-0 text-decoration-none">
-    <span class="d-lg-none d-block">DWR</span>
-    <span class="d-none d-lg-block">Django<br>WebRemote</span>
+<div class="d-flex flex-lg-column flex-row flex-grow-1 align-items-start ps-2 pe-1 py-lg-4 py-3">
+  <a href="https://alexander-shelton.github.io/djangoWebRemote/" class="navbar-brand d-flex mb-lg-0 text-decoration-none">
+    <span class="d-block">DWR</span>
   </a>
   <hr>
   <ul class="nav nav-pills flex-lg-column flex-row flex-nowrap flex-shrink-1 flex-lg-grow-0 flex-grow-1 mb-lg-auto mb-0 justify-content-center align-items-center" id="menu">
@@ -10,45 +9,42 @@
     <li class="nav-item">
       {% url 'home' as home %}
       <a href="{% url 'home' %} " class="nav-link text-info rounded-3 {% if request.get_full_path == home %}active{% endif %}">
-        <i class="bi bi-house-fill me-lg-2"></i><span class="d-none d-lg-inline"> Home</span>
+        <i class="bi bi-house-fill me-lg-2"></i>
       </a>
     </li>
     <!-- About -->
     <li class="nav-item">
       {% url 'about' as about %}
       <a href="{% url 'about' %}" class="nav-link text-info rounded-3 {% if request.get_full_path == about %}active{% endif %}">
-        <i class="bi bi-info-square-fill me-lg-2"></i><span class="d-none d-lg-inline"> About</span>
+        <i class="bi bi-info-square-fill me-xl-2"></i>
       </a>
     </li>
     <!-- Remote -->
     <li class="nav-item">
       {% url 'remote_control' as remote %}
       <a href="{% url 'remote_control' %}" class="nav-link text-info rounded-3 {% if request.get_full_path == remote %}active{% endif %}">
-        <i class="bi bi-dpad-fill me-lg-2"></i><span class="d-none d-lg-inline"> Remotes</span>
+        <i class="bi bi-dpad-fill me-lg-2"></i>
       </a>
     </li>
     <!-- Settings -->
     <li class="nav-item">
       {% url 'settings' as settings %}
       <a href="{% url 'settings' %}" class="nav-link text-info rounded-3 {% if request.get_full_path == settings %}active{% endif %}">
-        <i class="bi bi-sliders me-lg-2"></i><span class="d-none d-lg-inline"> Settings</span>
+        <i class="bi bi-sliders me-lg-2"></i>
       </a>
     </li>
     <!-- Help -->
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       {% url 'help' as help %}
       <a href="{% url 'help' %}"  id="navLink" class="nav-link text-info rounded-3 {% if request.get_full_path ==  help %}active{% endif %}">
         <i class="bi bi-question-circle-fill me-lg-2"></i><span class="d-none d-lg-inline"> Help</span>
       </a>
-    </li>
+    </li> -->
   </ul>
   <hr>
-  <div class="dropdown py-lg-4 mt-lg-auto ms-auto ms-lg-0 flex-shrink-1">
-    <a href="#" class="d-flex d-lg-none align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+  <div class="dropdown ms-auto pe-3">
+    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="bi bi-person-circle"></i>
-      {% if user.is_authenticated %}
-        <span class="d-none d-lg-inline mx-2">{{ user.first_name }}</span>
-      {% endif %}
     </a>
     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
       {% if user.is_authenticated %}
@@ -66,20 +62,5 @@
         <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
       {% endif %}
     </ul>
-  </div>
-  <div id="registrationBtns" class="d-lg-grid d-none my-2 gap-2">
-    {% if user.is_authenticated %}
-      <!-- If user is logged in provide logout button -->
-      <form action="{% url 'logout' %}" method="post">
-        {% csrf_token %}
-        <button id="logoutBtn" type="submit" class="btn btn-primary">Logout</button>
-      </form>
-    {% else %}
-      <!-- If user is not logged in provide register and login buttons -->
-      {% url 'register' as rgstr %}
-        <a href="{% url 'register' %}" class="btn btn-primary {% if request.get_full_path == rgstr %}active btn-disabled text-muted{% endif %}">Register</a>
-      {% url 'login' as lgn %}
-        <a href="{% url 'login' %}" class="btn btn-primary {% if request.get_full_path == lgn %}active btn-disabled text-muted{% endif %}">Login</a>
-    {% endif %}
   </div>
 </div>
