@@ -8,3 +8,6 @@ package-lock.json
 _reference_docs/
 staticfiles/
 package.json
+venv/
+migrations/
+logs/

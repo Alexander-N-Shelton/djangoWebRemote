@@ -112,3 +112,28 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'remote_file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'logs/app.log',
+            'formatter': 'verbose',
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(asctime)s||%(levelname)s||%(message)s',
+            'datefmt': '%Y-%m-%d %H:%M',
+        },
+    },
+    'loggers': {
+        'remote': {
+            'handlers': ['remote_file'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    },
+}
