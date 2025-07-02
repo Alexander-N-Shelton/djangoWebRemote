@@ -1,0 +1,435 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Voice Remote Control{% endblock %}
+
+{% block extra_css %}
+<style>
+    .voice-remote-container {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 2rem 0;
+    }
+    
+    .voice-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .voice-button {
+        background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+        border: none;
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        color: white;
+        font-size: 2.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(238, 90, 82, 0.4);
+        margin: 1rem;
+    }
+    
+    .voice-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(238, 90, 82, 0.6);
+        background: linear-gradient(45deg, #ee5a52, #ff6b6b);
+    }
+    
+    .voice-button:active, .voice-button.recording {
+        transform: scale(0.95);
+        animation: pulse 1.5s infinite;
+    }
+    
+    .voice-button.recording {
+        background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        box-shadow: 0 4px 15px rgba(68, 160, 141, 0.4);
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(0.95); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(0.95); }
+    }
+    
+    .status-display {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .command-list {
+        max-height: 300px;
+        overflow-y: auto;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        padding: 1rem;
+    }
+    
+    .command-item {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+        border-left: 4px solid #667eea;
+    }
+    
+    .command-phrase {
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .command-target {
+        color: #666;
+        font-size: 0.9em;
+    }
+    
+    .setup-link {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        text-decoration: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        display: inline-block;
+        margin: 1rem 0;
+    }
+    
+    .setup-link:hover {
+        color: white;
+        text-decoration: none;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+    
+    .welcome-message {
+        text-align: center;
+        color: #333;
+        margin-bottom: 2rem;
+    }
+    
+    .welcome-message h1 {
+        color: #667eea;
+        font-weight: 300;
+        margin-bottom: 0.5rem;
+    }
+    
+    .stats-row {
+        display: flex;
+        justify-content: space-around;
+        margin: 2rem 0;
+    }
+    
+    .stat-item {
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #667eea;
+    }
+    
+    .stat-label {
+        color: #666;
+        font-size: 0.9em;
+    }
+    
+    .response-message {
+        padding: 1rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+        animation: slideIn 0.3s ease;
+    }
+    
+    .response-success {
+        background: rgba(40, 167, 69, 0.1);
+        border-left: 4px solid #28a745;
+        color: #155724;
+    }
+    
+    .response-error {
+        background: rgba(220, 53, 69, 0.1);
+        border-left: 4px solid #dc3545;
+        color: #721c24;
+    }
+    
+    .response-info {
+        background: rgba(0, 123, 255, 0.1);
+        border-left: 4px solid #007bff;
+        color: #004085;
+    }
+    
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="voice-remote-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Welcome Section -->
+                <div class="voice-card welcome-message">
+                    <h1>🎤 Voice Remote</h1>
+                    <p class="lead">Control your TV with natural voice commands</p>
+                    
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <div class="stat-number">{{ commands_count }}</div>
+                            <div class="stat-label">Voice Commands</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="usageCount">0</div>
+                            <div class="stat-label">Commands Used Today</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Voice Control Section -->
+                <div class="voice-card text-center">
+                    <h3 class="mb-4">Press & Speak</h3>
+                    
+                    <button id="voiceButton" class="voice-button" onclick="startVoiceCommand()">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    
+                    <div id="voiceStatus" class="status-display">
+                        <div>
+                            <i class="fas fa-microphone-slash text-muted fa-2x mb-2"></i>
+                            <p class="text-muted mb-0">Click the microphone to start</p>
+                        </div>
+                    </div>
+                    
+                    <div id="responseArea"></div>
+                </div>
+
+                <!-- Your Commands Section -->
+                {% if user_commands %}
+                <div class="voice-card">
+                    <h4 class="mb-3">
+                        <i class="fas fa-list-ul me-2"></i>Your Voice Commands
+                    </h4>
+                    
+                    <div class="command-list">
+                        {% for command in user_commands %}
+                        <div class="command-item">
+                            <div class="command-phrase">"{{ command.phrase }}"</div>
+                            <div class="command-target">
+                                {{ command.get_command_type_display }} → {{ command.target_button_name }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                        <a href="{% url 'voice_setup' %}" class="setup-link">
+                            <i class="fas fa-cog me-1"></i> Manage Commands
+                        </a>
+                    </div>
+                </div>
+                {% else %}
+                <!-- No Commands Yet -->
+                <div class="voice-card text-center">
+                    <h4>🚀 Get Started</h4>
+                    <p class="text-muted mb-4">You haven't set up any voice commands yet. Let's create some!</p>
+                    
+                    <div class="row text-start">
+                        <div class="col-md-6">
+                            <h6>📺 Navigation Examples:</h6>
+                            <ul class="list-unstyled">
+                                <li><strong>"go home"</strong> → Home button</li>
+                                <li><strong>"go back"</strong> → Back button</li>
+                                <li><strong>"volume up"</strong> → Volume Up</li>
+                                <li><strong>"turn off"</strong> → Power button</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>🎬 App Examples:</h6>
+                            <ul class="list-unstyled">
+                                <li><strong>"open netflix"</strong> → Netflix app</li>
+                                <li><strong>"start youtube"</strong> → YouTube app</li>
+                                <li><strong>"play music"</strong> → Spotify app</li>
+                                <li><strong>"watch news"</strong> → News app</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <a href="{% url 'voice_setup' %}" class="setup-link">
+                        <i class="fas fa-plus me-1"></i> Setup Voice Commands
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let isRecording = false;
+let usageCount = parseInt(localStorage.getItem('voiceUsageCount') || '0');
+
+// Initialize usage count display
+document.getElementById('usageCount').textContent = usageCount;
+
+async function startVoiceCommand() {
+    if (isRecording) return;
+    
+    const button = document.getElementById('voiceButton');
+    const status = document.getElementById('voiceStatus');
+    const responseArea = document.getElementById('responseArea');
+    
+    // Clear previous responses
+    responseArea.innerHTML = '';
+    
+    // Update UI for recording state
+    isRecording = true;
+    button.classList.add('recording');
+    button.innerHTML = '<i class="fas fa-stop"></i>';
+    
+    status.innerHTML = `
+        <div>
+            <i class="fas fa-microphone text-success fa-2x mb-2"></i>
+            <p class="text-success mb-0"><strong>Listening...</strong></p>
+            <small class="text-muted">Speak your command now</small>
+        </div>
+    `;
+    
+    try {
+        const response = await fetch('/voice/command/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                'Content-Type': 'application/json',
+            }
+        });
+        
+        const data = await response.json();
+        
+        // Update usage count
+        if (data.status === 'success') {
+            usageCount++;
+            localStorage.setItem('voiceUsageCount', usageCount.toString());
+            document.getElementById('usageCount').textContent = usageCount;
+        }
+        
+        // Display result
+        displayResult(data);
+        
+    } catch (error) {
+        displayResult({
+            status: 'error',
+            message: `Connection error: ${error.message}`
+        });
+    } finally {
+        // Reset UI
+        isRecording = false;
+        button.classList.remove('recording');
+        button.innerHTML = '<i class="fas fa-microphone"></i>';
+        
+        status.innerHTML = `
+            <div>
+                <i class="fas fa-microphone-slash text-muted fa-2x mb-2"></i>
+                <p class="text-muted mb-0">Click the microphone to start</p>
+            </div>
+        `;
+    }
+}
+
+function displayResult(data) {
+    const responseArea = document.getElementById('responseArea');
+    let messageClass = 'response-info';
+    let icon = 'fas fa-info-circle';
+    
+    if (data.status === 'success') {
+        messageClass = 'response-success';
+        icon = 'fas fa-check-circle';
+    } else if (data.status === 'error') {
+        messageClass = 'response-error';
+        icon = 'fas fa-exclamation-circle';
+    }
+    
+    let content = `
+        <div class="response-message ${messageClass}">
+            <i class="${icon} me-2"></i>
+            <strong>${data.message || 'Command processed'}</strong>
+    `;
+    
+    if (data.voice_command) {
+        content += `
+            <div class="mt-2">
+                <small>
+                    <strong>Recognized:</strong> "${data.voice_command.recognized_text}"<br>
+                    <strong>Matched:</strong> "${data.voice_command.matched_phrase}"<br>
+                    <strong>Action:</strong> ${data.voice_command.target_button}
+                </small>
+            </div>
+        `;
+    }
+    
+    content += '</div>';
+    responseArea.innerHTML = content;
+    
+    // Auto-clear success messages after 5 seconds
+    if (data.status === 'success') {
+        setTimeout(() => {
+            responseArea.innerHTML = '';
+        }, 5000);
+    }
+}
+
+// Add CSRF token to all AJAX requests
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+// Add keyboard support
+document.addEventListener('keydown', function(event) {
+    // Space bar to trigger voice command
+    if (event.code === 'Space' && !isRecording) {
+        event.preventDefault();
+        startVoiceCommand();
+    }
+});
+
+// Reset daily usage count at midnight
+const now = new Date();
+const lastReset = localStorage.getItem('voiceUsageLastReset');
+const today = now.toDateString();
+
+if (lastReset !== today) {
+    localStorage.setItem('voiceUsageCount', '0');
+    localStorage.setItem('voiceUsageLastReset', today);
+    document.getElementById('usageCount').textContent = '0';
+}
+</script>
+
+<!-- CSRF Token for AJAX -->
+{% csrf_token %}
+{% endblock %}

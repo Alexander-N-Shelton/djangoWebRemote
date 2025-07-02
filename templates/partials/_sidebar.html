@@ -26,6 +26,13 @@
         <i class="bi bi-dpad-fill me-lg-2"></i>
       </a>
     </li>
+    <!-- Voice Remote -->
+    <li class="nav-item">
+      {% url 'voice_remote' as voice_remote %}
+      <a href="{% url 'voice_remote' %}" class="nav-link text-info rounded-3 {% if request.get_full_path == voice_remote %}active{% endif %}">
+        <i class="bi bi-mic-fill me-lg-2"></i>
+      </a>
+    </li>
     <!-- Settings -->
     <li class="nav-item">
       {% url 'settings' as settings %}
