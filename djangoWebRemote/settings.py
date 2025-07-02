@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "remote",
     "pages",
     "help",
+    "voice",
 ]
 
 # Middleware
