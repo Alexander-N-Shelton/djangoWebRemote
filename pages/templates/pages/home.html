@@ -2,28 +2,27 @@
 {% extends 'base.html' %}
 {% block title %}| Welcome{% endblock %}
 {% load static %}
-{% block head %}
-  <link rel="stylesheet" href="{% static 'pages/css/home.css' %}">
-{% endblock %}
 {% block content %}
 <section id="home" class="home container d-flex flex-column justify-content-center align-items-center min-vh-100">
-  <div class="row text-center">
-    <h1 class="display-2 mb-5">Welcome To Django WebRemote</h1>
-    <div class="col-lg-8 mx-auto">
-      <p class="lead">A simplified smart TV remote built for accessibility and ease of use - right from your browser.</p>
+  <div class="row mx-auto text-center">
+    <div class="col-8 mx-auto text-center">
+      <h1 class="display-2 mb-5">Welcome To Django WebRemote</h1>
+    </div>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead">A simplified smart TV remote built for accessibility and ease of use.</p>
     </div>
   </div>
-  <!-- Social Icons -->
-  <div id="social-icons" class="mt-4">
-    <a href="https://github.com/alexander-n-shelton/" class="btn btn-primary mx-2 rounded-pill fs-4" target="_blank">
-      <i class="fab fa-github"></i>
-    </a>
-    <a href="https://www.linkedin.com/in/alexander-n-shelton/" class="btn btn-primary mx-2 rounded-pill fs-4" target="_blank">
-      <i class="fab fa-linkedin"></i>
-    </a>
-    <a href="https://www.facebook.com/" class="btn btn-primary mx-2 rounded-pill fs-4" target="_blank">
-      <i class="fab fa-facebook"></i>
-    </a>
-  </div>
+  {% if user.is_authenticated %}
+    <div class="mt-5">
+      <a href="{% url 'remote_control' %}" class="btn btn-primary btn-lg mx-2">Remote</a>
+      <a href="{% url 'voice_remote' %}" class="btn btn-success btn-lg mx-2">Voice</a>
+      <a href="{% url 'settings' %}" class="btn btn-secondary btn-lg mx-2">Settings</a>
+    </div>
+  {% else %}
+    <div class="mt-5">
+      <a href="{% url 'login' %}" class="btn btn-primary btn-lg mx-2">Login</a>
+      <a href="{% url 'register' %}" class="btn btn-outline-primary btn-lg mx-2">Register</a>
+    </div>
+  {% endif %}
 </section>
 {% endblock %}

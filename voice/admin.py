@@ -3,7 +3,7 @@ from .models import VoiceCommand
 
 @admin.register(VoiceCommand)
 class VoiceCommandAdmin(admin.ModelAdmin):
-    list_display = ['user', 'phrase', 'command_type', 'target_button_name', 'is_active', 'created_at']
+    list_display = ['phrase', 'command_type', 'target_button_name', 'is_active']
     list_filter = ['command_type', 'is_active', 'created_at']
     search_fields = ['user__username', 'phrase', 'target_button_name']
     list_editable = ['is_active']
@@ -11,7 +11,7 @@ class VoiceCommandAdmin(admin.ModelAdmin):
     
     fieldsets = (
         (None, {
-            'fields': ('user', 'phrase', 'command_type', 'target_button_name')
+            'fields': ('phrase', 'command_type', 'target_button_name')
         }),
         ('Settings', {
             'fields': ('is_active',),

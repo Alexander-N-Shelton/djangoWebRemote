@@ -2,11 +2,8 @@
 {% extends 'base.html' %}
 {% block title %} | Register {% endblock %}
 {% load static %}
-{% block head %}
-<link rel="stylesheet" href="{% static 'accounts/css/account_styles.css' %}">
-{% endblock %}
 {% block content %}
-<section id="cardForm" class="register-form">
+<section id="cardForm" class="register-form py-4">
   <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
     <div class="col-md-8 col-12 mx-auto">
       <div class="card text-center">
@@ -61,16 +58,16 @@
             <hr>
             <!-- Submit Form -->
             <div class="row text-center ">
-              <div class="col-md-6 mx-auto my-3">
+              <div class="col-6 mx-auto my-3">
                 <a href="{% url 'login' %}" class="btn btn-primary rounded-3 text-nowrap mx-auto">
                   <i class="fa-solid fa-arrow-left"></i>
                   <span class="px-2"></span>
                   Back to Login
                 </a>
               </div>
-              <div class="col-md-6 mx-auto mb-3">
+              <div class="col-6 mx-auto my-3">
                 <button type="submit" value="register" class="btn btn-primary rounded-3 text-nowrap mx-auto">
-                  Register
+                  Submit
                 </button>
               </div>
             </div>

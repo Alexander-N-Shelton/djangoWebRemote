@@ -1,236 +1,192 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block title %}Voice Commands Setup{% endblock %}
-
-{% block extra_css %}
-<style>
-    .voice-card {
-        background: white;
-        border-radius: 10px;
-        padding: 1.5rem;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        margin-bottom: 1rem;
-    }
-    .command-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.75rem;
-        border: 1px solid #e0e0e0;
-        border-radius: 5px;
-        margin-bottom: 0.5rem;
-    }
-    .command-phrase {
-        font-weight: bold;
-        color: #007bff;
-    }
-    .command-target {
-        color: #6c757d;
-        font-size: 0.9em;
-    }
-    .btn-record {
-        background: #dc3545;
-        color: white;
-        border: none;
-        padding: 1rem 2rem;
-        border-radius: 50px;
-        font-size: 1.1em;
-        cursor: pointer;
-        margin: 1rem;
-    }
-    .btn-record:hover {
-        background: #c82333;
-    }
-    .recording {
-        animation: pulse 1s infinite;
-    }
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
-    }
-</style>
-{% endblock %}
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block title %}Voice Commands
+Setup{% endblock %} {% block head %}
+<link rel="stylesheet" href="{% static 'voice/css/setup_styles.css' %}" />
+{% endblock %} {% block content %}
 <div class="container mt-4">
-    <h2>Voice Commands Setup</h2>
-    
-    <!-- Quick Voice Test -->
-    <div class="voice-card">
-        <h4>Test Voice Command</h4>
-        <p>Click the button below and speak a command to test the voice recognition:</p>
-        <button id="testVoiceBtn" class="btn-record" onclick="testVoiceCommand()">
-            🎤 Test Voice Command
-        </button>
-        <div id="voiceResult" class="mt-3"></div>
-    </div>
+  <h2 class="text-center display-4">Voice Commands Setup</h2>
 
-    <!-- Add New Voice Command -->
-    <div class="voice-card">
-        <h4>Add New Voice Command</h4>
-        <form method="post">
-            {% csrf_token %}
-            <input type="hidden" name="action" value="add">
-            
-            <div class="row">
-                <div class="col-md-4">
-                    <label for="phrase" class="form-label">Voice Phrase:</label>
-                    <input type="text" class="form-control" id="phrase" name="phrase" 
-                           placeholder="e.g., turn on netflix" required>
-                    <small class="text-muted">The phrase you'll speak</small>
-                </div>
-                
-                <div class="col-md-3">
-                    <label for="command_type" class="form-label">Command Type:</label>
-                    <select class="form-control" id="command_type" name="command_type" onchange="updateTargetOptions()" required>
-                        <option value="">Select type</option>
-                        <option value="navigation">Navigation</option>
-                        <option value="favorite">Favorite</option>
-                    </select>
-                </div>
-                
-                <div class="col-md-3">
-                    <label for="target_button" class="form-label">Target Button:</label>
-                    <select class="form-control" id="target_button" name="target_button" required>
-                        <option value="">Select button</option>
-                    </select>
-                </div>
-                
-                <div class="col-md-2 d-flex align-items-end">
-                    <button type="submit" class="btn btn-primary w-100">Add Command</button>
-                </div>
-            </div>
-        </form>
-    </div>
+  <!-- Quick Voice Test -->
+  <div class="voice-card text-center">
+    <h4>Test Voice Command</h4>
+    <p>
+      Click the button below and speak a command to test the voice recognition:
+    </p>
+    <button id="testVoiceBtn" class="btn-record" onclick="testVoiceCommand()">
+      Test Voice Command
+    </button>
+    <div id="voiceResult" class="mt-3"></div>
+  </div>
 
-    <!-- Existing Voice Commands -->
-    <div class="voice-card">
-        <h4>Your Voice Commands ({{ user_commands.count }})</h4>
-        
-        {% if user_commands %}
-            {% for command in user_commands %}
-            <div class="command-item">
-                <div>
-                    <div class="command-phrase">"{{ command.phrase }}"</div>
-                    <div class="command-target">
-                        {{ command.get_command_type_display }} → {{ command.target_button_name }}
-                    </div>
-                </div>
-                <form method="post" style="display: inline;">
-                    {% csrf_token %}
-                    <input type="hidden" name="action" value="delete">
-                    <input type="hidden" name="command_id" value="{{ command.id }}">
-                    <button type="submit" class="btn btn-sm btn-outline-danger" 
-                            onclick="return confirm('Delete this voice command?')">
-                        Delete
-                    </button>
-                </form>
-            </div>
-            {% endfor %}
-        {% else %}
-            <p class="text-muted">No voice commands configured yet. Add some above!</p>
-        {% endif %}
-    </div>
+  <!-- Add New Voice Command -->
+  <div class="voice-card">
+    <h4>Add New Voice Command</h4>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="add" />
 
-    <!-- Common Examples -->
-    <div class="voice-card">
-        <h4>Suggested Voice Commands</h4>
-        <div class="row">
-            <div class="col-md-6">
-                <h6>Navigation Examples:</h6>
-                <ul class="list-unstyled">
-                    <li>"go home" → Home</li>
-                    <li>"go back" → Back</li>
-                    <li>"volume up" → Volume Up</li>
-                    <li>"power off" → Power</li>
-                </ul>
-            </div>
-            <div class="col-md-6">
-                <h6>App Examples:</h6>
-                <ul class="list-unstyled">
-                    <li>"open netflix" → Netflix</li>
-                    <li>"start youtube" → YouTube</li>
-                    <li>"play music" → Spotify</li>
-                </ul>
-            </div>
+      <div class="row">
+        <div class="col-md-4">
+          <label for="phrase" class="form-label">Voice Phrase:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="phrase"
+            name="phrase"
+            placeholder="e.g., turn on netflix"
+            required
+          />
+          <small class="text-muted">The phrase you'll speak</small>
         </div>
+
+        <div class="col-md-3">
+          <label for="command_type" class="form-label">Command Type:</label>
+          <select
+            class="form-control"
+            id="command_type"
+            name="command_type"
+            onchange="updateTargetOptions()"
+            required
+          >
+            <option value="">Select type</option>
+            <option value="navigation">Navigation</option>
+            <option value="favorite">Favorite</option>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label for="target_button" class="form-label">Target Button:</label>
+          <select
+            class="form-control"
+            id="target_button"
+            name="target_button"
+            required
+          >
+            <option value="">Select button</option>
+          </select>
+        </div>
+
+        <div class="col-md-2 d-flex align-items-end">
+          <button type="submit" class="btn btn-primary w-100">
+            Add Command
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Existing Voice Commands -->
+  <div class="voice-card">
+    <h4>Your Voice Commands ({{ user_commands.count }})</h4>
+
+    {% if user_commands %} {% for command in user_commands %}
+    <div class="command-item">
+      <div>
+        <div class="command-phrase">"{{ command.phrase }}"</div>
+        <div class="command-target">
+          {{ command.get_command_type_display }} → {{ command.target_button_name
+          }}
+        </div>
+      </div>
+      <form method="post" style="display: inline">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="delete" />
+        <input type="hidden" name="command_id" value="{{ command.id }}" />
+        <button
+          type="submit"
+          class="btn btn-sm btn-outline-danger"
+          onclick="return confirm('Delete this voice command?')"
+        >
+          Delete
+        </button>
+      </form>
     </div>
+    {% endfor %} {% else %}
+    <p class="text-muted">No voice commands configured yet. Add some above!</p>
+    {% endif %}
+  </div>
+  <a
+    href="{% url 'voice_remote' %}"
+    class="btn btn-primary"
+    id="backToVoiceBtn"
+  >
+    <i class="fas fa-microphone me-1"></i>
+    Go Back
+  </a>
 </div>
-
 <script>
-// Navigation and favorite buttons data from Django
-const navigationButtons = {{ navigation_buttons_json|safe }};
-const favoriteButtons = {{ favorite_buttons_json|safe }};
+  // Navigation and favorite buttons data from Django
+  const navigationButtons = {{ navigation_buttons_json|safe }};
+  const favoriteButtons = {{ favorite_buttons_json|safe }};
 
-// Update target button options based on command type
-function updateTargetOptions() {
-    const commandType = document.getElementById('command_type').value;
-    const targetSelect = document.getElementById('target_button');
-    
+  // Update target button options based on command type
+  function updateTargetOptions() {
+    const commandType = document.getElementById("command_type").value;
+    const targetSelect = document.getElementById("target_button");
+
     // Clear existing options
     targetSelect.innerHTML = '<option value="">Select button</option>';
-    
-    if (commandType === 'navigation') {
-        navigationButtons.forEach(button => {
-            targetSelect.innerHTML += `<option value="${button.name}">${button.name}</option>`;
-        });
-    } else if (commandType === 'favorite') {
-        favoriteButtons.forEach(button => {
-            targetSelect.innerHTML += `<option value="${button.name}">${button.name}</option>`;
-        });
-    }
-}
 
-// Test voice command function
-async function testVoiceCommand() {
-    const btn = document.getElementById('testVoiceBtn');
-    const result = document.getElementById('voiceResult');
-    
-    btn.innerHTML = '🎤 Listening...';
-    btn.classList.add('recording');
-    btn.disabled = true;
-    
-    try {
-        const response = await fetch('/voice/command/', {
-            method: 'POST',
-            headers: {
-                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
-                'Content-Type': 'application/json',
-            }
-        });
-        
-        const data = await response.json();
-        
-        if (data.status === 'success') {
-            result.innerHTML = `
-                <div class="alert alert-success">
-                    <strong>Success!</strong><br>
-                    Recognized: "${data.voice_command.recognized_text}"<br>
-                    Matched: "${data.voice_command.matched_phrase}"<br>
-                    Executed: ${data.voice_command.target_button}<br>
-                    Result: ${data.message}
-                </div>
-            `;
-        } else {
-            result.innerHTML = `
-                <div class="alert alert-warning">
-                    <strong>Notice:</strong> ${data.message}
-                </div>
-            `;
-        }
-    } catch (error) {
-        result.innerHTML = `
-            <div class="alert alert-danger">
-                <strong>Error:</strong> ${error.message}
-            </div>
-        `;
+    if (commandType === "navigation") {
+      navigationButtons.forEach((button) => {
+        targetSelect.innerHTML += `<option value="${button.name}">${button.name}</option>`;
+      });
+    } else if (commandType === "favorite") {
+      favoriteButtons.forEach((button) => {
+        targetSelect.innerHTML += `<option value="${button.name}">${button.name}</option>`;
+      });
     }
-    
-    btn.innerHTML = '🎤 Test Voice Command';
-    btn.classList.remove('recording');
+  }
+
+  // Test voice command function
+  async function testVoiceCommand() {
+    const btn = document.getElementById("testVoiceBtn");
+    const result = document.getElementById("voiceResult");
+
+    btn.innerHTML = "🎤 Listening...";
+    btn.classList.add("recording");
+    btn.disabled = true;
+
+    try {
+      const response = await fetch("/voice/command/", {
+        method: "POST",
+        headers: {
+          "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]")
+            .value,
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+
+      if (data.status === "success") {
+        result.innerHTML = `
+                    <div class="alert alert-success">
+                        <strong>Success!</strong><br>
+                        Recognized: "${data.voice_command.recognized_text}"<br>
+                        Matched: "${data.voice_command.matched_phrase}"<br>
+                        Executed: ${data.voice_command.target_button}<br>
+                        Result: ${data.message}
+                    </div>
+                `;
+      } else {
+        result.innerHTML = `
+                    <div class="alert alert-warning">
+                        <strong>Notice:</strong> ${data.message}
+                    </div>
+                `;
+      }
+    } catch (error) {
+      result.innerHTML = `
+                <div class="alert alert-danger">
+                    <strong>Error:</strong> ${error.message}
+                </div>
+            `;
+    }
+
+    btn.innerHTML = "🎤 Test Voice Command";
+    btn.classList.remove("recording");
     btn.disabled = false;
-}
+  }
 </script>
+<script src="{% static 'voice/js/setup_script.js' %}"></script>
 {% endblock %}

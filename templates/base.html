@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="{% static 'global/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'global/css/font-awesome.css' %}">
     <link rel="stylesheet" href="{% static 'global/css/messages.css' %}">
-    <link rel="stylesheet" href="{% static 'global/css/sidebar.css' %}">
     <link rel="stylesheet" href="{% static 'global/css/footer.css' %}">
     <title>Django WebRemote {% block title %} {% endblock %}</title>
     {% block head %} {% endblock %}
@@ -20,12 +19,11 @@
 
   <body>    
     {% block navbar %}
-    <div class="container-fluid overflow-hidden">
-      <div class="row overflow-auto">
-        <div id="sidebar" class="col-12 col-lg-2 px-lg-2 px-0 bg-dark d-flex fixed-top">
-          {% include 'partials/_sidebar.html' %}
+      <div class="container-fluid overflow-hidden">
+        <div id="menu" class="fixed-top px-2 py-2">
+          {% include 'partials/_menu.html' %}
         </div>
-        {% endblock %}
+    {% endblock %}
         <div id="mainContent" class="col d-flex flex-column">
           <main class="row overflow-auto">
             {% block content %} {% endblock %}
@@ -36,9 +34,6 @@
 
     <!-- Alerts -->
     {% include 'partials/_alerts.html' %}
-
-    <!-- Footer -->
-    {% include 'partials/_footer.html' %}
 
     <!-- Scripts -->
     {% block scripts %} {% endblock %}
