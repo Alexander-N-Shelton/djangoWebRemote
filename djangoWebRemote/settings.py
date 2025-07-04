@@ -119,7 +119,13 @@ LOGGING = {
         'remote_file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'logs/app.log',
+            'filename': BASE_DIR / 'logs/remote.log',
+            'formatter': 'verbose',
+        },
+        'voice_file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'logs/voice.log',
             'formatter': 'verbose',
         },
     },
@@ -132,6 +138,11 @@ LOGGING = {
     'loggers': {
         'remote': {
             'handlers': ['remote_file'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'voice': {
+            'handlers': ['voice_file'],
             'level': 'DEBUG',
             'propagate': False,
         },
