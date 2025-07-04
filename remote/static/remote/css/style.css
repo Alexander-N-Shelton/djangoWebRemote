@@ -1,0 +1,42 @@
+/* static/css/styles.css */
+/* Both Remotes */
+
+/* Large devices */
+@media (min-width: 992px) {
+  .navBtnIcon {
+    font-size: 7vw;
+    width: 100%;
+  }
+}
+
+.navBtn,
+.favBtn {
+  width: 75%;
+  height: 75%;
+  margin: 1rem;
+}
+
+.favBtnImg {
+  width: 70% !important;
+  height: auto;
+}
+
+/* Single Remote */
+#singleRemote .card-header {
+  box-shadow: 0 2px 4px var(--bs-secondary) !important;
+}
+
+#singleRemote .nav-link.active {
+  font-size: 1.2rem !important;
+}
+
+#singleRemote button {
+  transition: all 0.5s ease;
+  background: var(--bs-gray) !important;
+  color: var(--bs-dark) !important;
+  box-shadow: 0 0 4px var(--bs-light) !important;
+}
+
+.container.compact {
+  max-width: 950px !important;
+}

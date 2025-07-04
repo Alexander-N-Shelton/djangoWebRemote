@@ -55,6 +55,7 @@ def voice_command(request):
                 voice_command = find_best_match(request.user, spoken_text)
             
             if not voice_command:
+                logger.error(f"No command found for: '{spoken_text}'")
                 return JsonResponse({
                     'status': 'error',
                     'message': f"No command found for: '{spoken_text}'"
@@ -67,6 +68,7 @@ def voice_command(request):
                 ).first()
                 
                 if not nav_button:
+                    logger.error(f"Navigation button '{voice_command.target_button_name}' not found")
                     return JsonResponse({
                         'status': 'error',
                         'message': f"Navigation button '{voice_command.target_button_name}' not found"
@@ -87,6 +89,7 @@ def voice_command(request):
                 ).first()
                 
                 if not fav_button:
+                    logger.error(f"Favorite button '{voice_command.target_button_name}' not found")
                     return JsonResponse({
                         'status': 'error',
                         'message': f"Favorite button '{voice_command.target_button_name}' not found"
@@ -114,7 +117,7 @@ def voice_command(request):
                 'matched_phrase': voice_command.phrase,
                 'target_button': voice_command.target_button_name
             }
-            
+            logger.info(f"Executed command: {voice_command.phrase} -> {voice_command.target_button_name}")
             return JsonResponse(response_data, status=response.status_code)
             
         except Exception as e:
@@ -123,7 +126,7 @@ def voice_command(request):
                 'status': 'error',
                 'message': f"Voice command failed: {str(e)}"
             }, status=500)
-    
+    logger.error("Invalid request method for voice command")
     return JsonResponse({
         'status': 'error',
         'message': 'Invalid request method'

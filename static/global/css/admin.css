@@ -1,7 +1,10 @@
 #nav-sidebar a {
-    text-transform: capitalize;
+  text-transform: capitalize;
 }
 
 #nav-sidebar a.section {
-    font-size: 0.875rem;
+  font-size: 0.875rem;
+}
+.object-tools a.addlink {
+  background-image: none !important;
 }

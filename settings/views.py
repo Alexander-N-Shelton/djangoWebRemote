@@ -4,7 +4,7 @@ import subprocess
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import UserSettings, TVConnection
+from .models import TVConnection
 
 
 def try_adb_connect(ip):
@@ -17,33 +17,12 @@ def try_adb_connect(ip):
 
 @login_required
 def settings_view(request):
-    user_settings, created = UserSettings.objects.get_or_create(user=request.user)
     tv_connections = TVConnection.objects.filter(user=request.user)
 
     context = {
-        'user_settings': user_settings,
         'tv_connections': tv_connections
     }
     return render(request, 'settings/settings.html', context)
-
-
-@login_required
-def change_layout_view(request):
-    user_settings, created = UserSettings.objects.get_or_create(user=request.user)
-
-    if request.method == "POST":
-        user_settings.button_spacing = request.POST.get("button_spacing", "DEFAULT")
-        user_settings.show_favorites_first = request.POST.get("show_favorites_first")
-        user_settings.dual_remote_view = request.POST.get("dual_remote_view") == "True"
-        user_settings.save()
-        messages.success(request, "Settings updated successfully")
-        return redirect("settings")
-
-    context = {
-        'user_settings': user_settings,
-    }
-
-    return render(request, 'settings/change_layout.html', context)
 
 
 @login_required

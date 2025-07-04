@@ -26,7 +26,6 @@ INSTALLED_APPS = [
     "accounts",
     "remote",
     "pages",
-    "help",
     "voice",
 ]
 

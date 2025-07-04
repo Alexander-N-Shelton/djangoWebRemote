@@ -9,7 +9,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from accounts.models import UserProfile, FavoriteButton
 from .models import NavigationButton
-from settings.models import UserSettings, TVConnection
+from settings.models import TVConnection
 
 logger = logging.getLogger('remote')
 
@@ -17,25 +17,16 @@ logger = logging.getLogger('remote')
 def remote_view(request):
     """Displays the remote page with both Navigation and Favorites"""
     profile, created = UserProfile.objects.get_or_create(user=request.user)
-    user_settings = UserSettings.objects.get(user=request.user)
     navigation_buttons = NavigationButton.objects.all()
     favorite_buttons = profile.favorites.all()
-    
-    spacing_class = user_settings.button_spacing.lower()
-    favorites_first = user_settings.show_favorites_first
+ 
 
     context = {
         "navigation_buttons": navigation_buttons,
         "favorite_buttons": favorite_buttons,
-        "favorites_first": favorites_first,
-        "spacing_class": spacing_class,
     }
 
-    if user_settings.dual_remote_view:
-        return render(request, "remote/dual_remote.html", context)
-    
-    else:
-        return render(request, "remote/single_remote.html", context)
+    return render(request, "remote/single_remote.html", context)
 
 @login_required
 def edit_favorite_view(request):

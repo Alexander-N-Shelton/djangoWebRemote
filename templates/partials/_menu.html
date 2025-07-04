@@ -1,0 +1,106 @@
+{% load static %}
+<button
+  id="menuBtn"
+  class="btn btn-primary"
+  type="button"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#navigationMenu"
+  aria-controls="navigationMenu"
+>
+  <i class="bi bi-list"></i> Menu
+</button>
+
+<div
+  class="offcanvas offcanvas-start"
+  data-bs-backdrop="static"
+  tabindex="-1"
+  id="navigationMenu"
+  aria-labelledby="navigationMenuLabel"
+>
+  <div class="offcanvas-header">
+    <a href="#" class="navbar-brand d-flex text-decoration-none mx-2 pt-4">
+      <span class="d-block fs-5">DjangoWebRemote</span>
+    </a>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="d-flex flex-column align-items-start">
+      <hr class="w-100" />
+      <ul
+        class="nav nav-pills flex-column flex-nowrap flex-shrink-1 flex-grow-1 mb-auto w-100 fs-5"
+        id="menu"
+      >
+        <!-- Home -->
+        <li class="nav-item mb-2">
+          {% url 'home' as home %}
+          <a
+            href="{% url 'home' %}"
+            class="nav-link rounded-3 {% if request.get_full_path == home %}active{% endif %}"
+          >
+            <i class="bi bi-house-fill me-2"></i>
+            <span>Home</span>
+          </a>
+        </li>
+        <!-- Remote -->
+        <li class="nav-item mb-2">
+          {% url 'remote_control' as remote %}
+          <a
+            href="{% url 'remote_control' %}"
+            class="nav-link rounded-3 {% if request.get_full_path == remote %}active{% endif %}"
+          >
+            <i class="bi bi-dpad-fill me-2"></i>
+            <span>Remote</span>
+          </a>
+        </li>
+        <!-- Voice Remote -->
+        <li class="nav-item mb-2">
+          {% url 'voice_remote' as voice_remote %}
+          <a
+            href="{% url 'voice_remote' %}"
+            class="nav-link rounded-3 {% if request.get_full_path == voice_remote %}active{% endif %}"
+          >
+            <i class="bi bi-mic-fill me-2"></i>
+            <span>Voice</span>
+          </a>
+        </li>
+        <!-- Settings -->
+        <li class="nav-item mb-2">
+          {% url 'settings' as settings %}
+          <a
+            href="{% url 'settings' %}"
+            class="nav-link rounded-3 {% if request.get_full_path == settings %}active{% endif %}"
+          >
+            <i class="bi bi-sliders me-2"></i>
+            <span>Settings</span>
+          </a>
+        </li>
+      </ul>
+      <hr class="w-100" />
+      {% if user.is_authenticated %}
+      <div class="row mx-auto">
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger mx-auto my-4">
+            Logout
+          </button>
+        </form>
+      </div>
+      {% else %}
+      <div class="row mx-auto">
+        <a class="btn btn-primary mx-auto my-2" href="{% url 'login' %}"
+          >Login</a
+        >
+        <div class="text-center fs-6">or</div>
+        <a class="btn btn-primary mx-auto mt-2" href="{% url 'register' %}"
+          >Register</a
+        >
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
