@@ -1,14 +1,31 @@
 {% load static %}
-<button
-  id="menuBtn"
-  class="btn btn-primary"
-  type="button"
-  data-bs-toggle="offcanvas"
-  data-bs-target="#navigationMenu"
-  aria-controls="navigationMenu"
->
-  <i class="bi bi-list"></i> Menu
-</button>
+<div class="d-flex mt-1 pb-1">
+  <div class="col-2 text-start">
+    <button
+      id="menuBtn"
+      class="btn btn-primary"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#navigationMenu"
+      aria-controls="navigationMenu"
+    >
+      <i class="bi bi-list"></i> Menu
+    </button>
+  </div>
+  <div class="col-8">
+    {% if page_title %}
+    <div class="display-4 text-center mx-auto">{{ page_title }}</div>
+    {% endif %}
+  </div>
+  <div class="col-2 text-end">
+    {% if page_button_url %}
+    <a href="{{ page_button_url }}" class="btn btn-primary">
+      <i class="bi bi-gear-fill"></i> {% if page_button %} {{ page_button }} {% endif %}
+    </a>
+    {% endif %}
+  </div>
+</div>
+
 
 <div
   class="offcanvas offcanvas-start"

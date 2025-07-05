@@ -26,7 +26,7 @@ async function testVoiceCommand() {
   const btn = document.getElementById("testVoiceBtn");
   const result = document.getElementById("voiceResult");
 
-  btn.innerHTML = "🎤 Listening...";
+  btn.innerHTML = "Listening...";
   btn.classList.add("recording");
   btn.disabled = true;
 
@@ -67,7 +67,7 @@ async function testVoiceCommand() {
           `;
   }
 
-  btn.innerHTML = "🎤 Test Voice Command";
+  btn.innerHTML = "Test Voice Command";
   btn.classList.remove("recording");
   btn.disabled = false;
 }

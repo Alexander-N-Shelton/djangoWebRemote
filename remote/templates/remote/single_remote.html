@@ -3,10 +3,10 @@
 {% block title %} | Single Remote {% endblock %}
 {% load static %}
 {% block head %}
-  <link rel="stylesheet" href="{% static 'remote/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'remote/css/remote_style.css' %}">
 {% endblock %}
 {% block content %}
-<section id="singleRemote" class="singleRemote min-vh-100 pt-4">
+<section id="singleRemote" class="singleRemote">
   <div class="container">
     <ul class="nav nav-pills d-flex justify-content-center">  
       <li class="nav-item mx-auto">
@@ -18,7 +18,7 @@
     </ul>
   </div>
   <div class="container compact">
-    <div class="tab-content mb-2 pt-3">
+    <div class="tab-content pt-2">
       <!-- Navigation -->
       <div id="navRemoteContainer" class="tab-pane fade">
         <div class="card mt-3" id="navCard">

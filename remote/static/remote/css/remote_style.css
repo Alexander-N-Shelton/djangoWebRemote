@@ -1,4 +1,4 @@
-/* static/css/styles.css */
+/* static/css/remote_styles.css */
 /* Both Remotes */
 
 /* Large devices */
@@ -13,7 +13,7 @@
 .favBtn {
   width: 75%;
   height: 75%;
-  margin: 1rem;
+  margin: 0.9rem;
 }
 #navTab, 
 #favTab {

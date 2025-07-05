@@ -48,9 +48,3 @@ body {
   font-family: "Poetsen One", sans-serif;
   font-weight: bold;
 }
-
-#menuBtn {
-  position: fixed;
-  top: 0.75rem;
-  left: 0.75rem;
-}

@@ -1,6 +1,7 @@
 import json
 import logging
 from django.shortcuts import render
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -19,11 +20,14 @@ def voice_remote(request):
     user_commands = VoiceCommand.objects.filter(user=request.user, is_active=True).order_by('phrase')
     
     context = {
+        'page_title': 'Voice Commands',
+        'page_button': 'Setup',
+        'page_button_url': reverse('voice_setup'),
         'user_commands': user_commands,
         'commands_count': user_commands.count(),
     }
     
-    return render(request, 'voice/remote.html', context)
+    return render(request, 'voice/voice_remote.html', context)
 
 @login_required
 @csrf_exempt

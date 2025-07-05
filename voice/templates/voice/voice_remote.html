@@ -1,13 +1,15 @@
-{% extends 'base.html' %} {% load static %} {% block title %}Voice Remote
-Control{% endblock %} {% block head %}
-<link rel="stylesheet" href="{% static 'voice/css/style.css' %}" />
-{% endblock %} {% block content %}
-<div class="voice-remote-container">
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Voice Remote Control{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'voice/css/voice_style.css' %}" />
+{% endblock %}
+{% block content %}
+<div class="voice-remote-container mt-2">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <!-- Welcome Section -->
-        <h1 class="text-center display-5">Voice Commands</h1>
         <p class="lead text-center">
           Control your TV with natural voice commands
         </p>
@@ -29,16 +31,8 @@ Control{% endblock %} {% block head %}
               <p class="text-muted mb-0">Click the microphone to start</p>
             </div>
           </div>
-
           <div id="responseArea"></div>
         </div>
-        <a
-          href="{% url 'voice_setup' %}"
-          class="btn btn-primary"
-          id="voiceSetupBtn"
-        >
-          <i class="fas fa-cogs me-1"></i> Setup Commands
-        </a>
       </div>
     </div>
   </div>

@@ -19,13 +19,13 @@
 
   <body>    
     {% block navbar %}
-      <div class="container-fluid overflow-hidden">
-        <div id="menu" class="fixed-top px-2 py-2">
+      <div class="container-fluid">
+        <div id="menu" class="sticky-top pt-1">
           {% include 'partials/_menu.html' %}
         </div>
     {% endblock %}
         <div id="mainContent" class="col d-flex flex-column">
-          <main class="row overflow-auto">
+          <main class="row">
             {% block content %} {% endblock %}
           </main>
         </div>
