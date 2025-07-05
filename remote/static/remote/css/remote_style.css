@@ -1,4 +1,4 @@
-/* static/css/remote_styles.css */
+/* static/remote/css/remote_style.css */
 /* Both Remotes */
 
 /* Large devices */
@@ -24,15 +24,14 @@
   font-size: 1.2rem !important;
 }
 
+#singleRemote .nav-link.active {
+  color: #00242b !important;
+  background: #7de38d !important;
+}
 
 .favBtnImg {
   width: 70% !important;
   height: auto;
-}
-
-#singleRemote .nav-link.active {
-  color: #00242b !important;
-  background: #7de38d !important;
 }
 
 #singleRemote button {

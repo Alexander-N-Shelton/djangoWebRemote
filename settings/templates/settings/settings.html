@@ -2,55 +2,118 @@
 {% extends 'base.html' %}
 {% block title %} | Account Settings {% endblock %}
 {% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'settings/css/style.css' %}">
+{% endblock %}
 {% block content %}
 <section id="settings" class="settings d-flex flex-column align-items-center">
   <div class="container">
-    <div class="row text-center mb-3">
-      <p class="lead">Manage your remote, voice commands, and TV connections</p>
-    </div>
     
-    <div class="row g-4 mb-2">
-      
-      <!-- TV Settings Section -->
-      <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="card h-100" id="tvSettingsCard">
-          <div class="card-header text-center">
-            <h3 class="card-title">
+    <!-- Navigation Pills -->
+    <div class="row my-4">
+      <div class="col-12">
+        <ul class="nav nav-pills nav-justified" id="settingsTabs">
+          <li class="nav-item mx-auto">
+            <a class="nav-link fs-6 active" id="tvTab" data-bs-toggle="tab" data-bs-target="#tvSettings" role="tab" aria-controls="tvSettings" aria-selected="true">
               <i class="bi bi-tv me-2"></i>
               TV Settings
-            </h3>
-          </div>
-          <div class="card-body text-center">
-            <div class="d-grid gap-1">
-            <hr>
-              <p>Click the button below to change your TV settings.</p>
-              <a href="{% url 'switch_tv' %}" class="btn btn-primary mb-2 mx-auto">Switch TV</a>
-            <hr>
-              <p>Click the button below to add a new TV.</p>
-              <a href="{% url 'add_tv' %}" class="btn btn-primary mb-2 mx-auto">Add TV</a>
-            <hr>
+            </a>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" id="favoritesTab" data-bs-toggle="tab" data-bs-target="#favoritesSettings" type="button" role="tab" aria-controls="favoritesSettings" aria-selected="false">
+              <i class="bi bi-star me-2"></i>Favorites
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" id="voiceTab" data-bs-toggle="tab" data-bs-target="#voiceSettings" type="button" role="tab" aria-controls="voiceSettings" aria-selected="false">
+              <i class="bi bi-mic me-2"></i>Voice Setup
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="settingsTabContent">
+      
+      <!-- TV Settings Tab -->
+      <div class="tab-pane fade show active" id="tvSettings" role="tabpanel" aria-labelledby="tv-tab">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-md-10 col-sm-12">
+            <div class="card">
+              <div class="card-header text-center">
+                <h3 class="card-title">
+                  <i class="bi bi-tv me-2"></i>
+                  TV Settings
+                </h3>
+              </div>
+              <div class="card-body text-center">
+                <div class="d-grid gap-3">
+                  <div>
+                    <p>Click the button below to switch the current TV.</p>
+                    <a href="{% url 'switch_tv' %}" class="btn btn-primary">Switch TV</a>
+                  </div>
+                  <hr>
+                  <div>
+                    <p>Click the button below to add a new TV.</p>
+                    <a href="{% url 'add_tv' %}" class="btn btn-primary my-2">Add TV</a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
       
-      <!-- Favorites Settings Section -->
-      <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="card h-100" id="favoriteSettingsCard">
-          <div class="card-header text-center">
-            <h3 class="card-title">
-              <i class="bi bi-star me-2"></i>
-              Favorite Settings
-            </h3>
-          </div>
-          <div class="card-body text-center">
-            <div class="d-grid gap-1">
-              <hr>
-              <p>Click the button below to add a new favorite.</p>
-              <a href="{% url 'edit_favorites' %}" class="btn btn-primary mb-2 mx-auto">Edit Favorites</a>
-              <hr>
+      <!-- Favorites Settings Tab -->
+      <div class="tab-pane fade" id="favoritesSettings" role="tabpanel" aria-labelledby="favoritesTab">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-md-10 col-sm-12">
+            <div class="card">
+              <div class="card-header text-center">
+                <h3 class="card-title">
+                  <i class="bi bi-star me-2"></i>
+                  Favorite Settings
+                </h3>
+              </div>
+              <div class="card-body text-center">
+                <div class="d-grid gap-3">
+                  <div>
+                    <p>Click the button below to edit your favorite channels and commands.</p>
+                    <a href="{% url 'edit_favorites' %}" class="btn btn-primary my-2">Edit Favorites</a>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div> 
+          </div>
+        </div>
+      </div>
+
+      <!-- Voice Setup Tab -->
+      <div class="tab-pane fade" id="voiceSettings" role="tabpanel" aria-labelledby="voiceTab">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-md-10 col-sm-12">
+            <div class="card">
+              <div class="card-header text-center">
+                <h3 class="card-title">
+                  <i class="bi bi-mic me-2"></i>
+                  Voice Setup
+                </h3>
+              </div>
+              <div class="card-body text-center">
+                <div class="d-grid gap-3">
+                  <div>
+                    <ul class="list-unstyled">
+                      <li>Test your microphone and voice recognition.</li>
+                      <li>Configure your voice commands settings.</li>
+                      <li>Add or edit custom voice commands for your remote.</li>
+                    </ul>
+                    <a href="{% url 'voice_setup' %}" class="btn btn-primary my-2">Voice Settings</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
