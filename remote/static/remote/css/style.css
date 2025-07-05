@@ -15,19 +15,24 @@
   height: 75%;
   margin: 1rem;
 }
+#navTab, 
+#favTab {
+  background: #00242b !important;
+  color: #7de38d !important;
+  border: 1px solid #7de38d !important;
+  font-family: "Poetsen One", sans-serif !important;
+  font-size: 1.2rem !important;
+}
+
 
 .favBtnImg {
   width: 70% !important;
   height: auto;
 }
 
-/* Single Remote */
-#singleRemote .card-header {
-  box-shadow: 0 2px 4px var(--bs-secondary) !important;
-}
-
 #singleRemote .nav-link.active {
-  font-size: 1.2rem !important;
+  color: #00242b !important;
+  background: #7de38d !important;
 }
 
 #singleRemote button {
