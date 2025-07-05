@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django = "*"
 pyaudio = "*"
+audioop-lts = "*"
 
 [dev-packages]
 
