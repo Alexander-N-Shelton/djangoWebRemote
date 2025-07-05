@@ -32,18 +32,39 @@ body {
   font-family: "Poetsen One", sans-serif;
 }
 
-.nav-link {
+#navigationMenu .nav-link {
   color: #7de38d !important;
   font-family: "Amethysta", sans-serif;
   font-weight: bold;
 }
 
-.nav-link.active {
+#navigationMenu .nav-link.active {
   color: #7de38d !important;
   background: #00242b !important;
 }
 
 .navbar-brand {
+  color: #7de38d !important;
+  font-family: "Poetsen One", sans-serif;
+  font-weight: bold;
+}
+
+#tvTab,
+#favoritesTab,
+#voiceTab {
+  background: #00242b !important;
+  color: #7de38d !important;
+  border: 1px solid #7de38d !important;
+  font-family: "Poetsen One", sans-serif !important;
+  font-size: 1.2rem !important;
+}
+
+#settingsTabs .nav-link.active {
+  color: #00242b !important;
+  background: #7de38d !important;
+}
+
+.card-title {
   color: #7de38d !important;
   font-family: "Poetsen One", sans-serif;
   font-weight: bold;
