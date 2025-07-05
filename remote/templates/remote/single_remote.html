@@ -6,9 +6,9 @@
   <link rel="stylesheet" href="{% static 'remote/css/style.css' %}">
 {% endblock %}
 {% block content %}
-<section id="singleRemote" class="singleRemote min-vh-100 pt-3">
+<section id="singleRemote" class="singleRemote min-vh-100 pt-4">
   <div class="container">
-    <ul class="nav nav-tabs d-flex justify-content-center">  
+    <ul class="nav nav-pills d-flex justify-content-center">  
       <li class="nav-item mx-auto">
         <a class="nav-link fs-6" id="navTab" data-bs-toggle="tab" data-bs-target="#navRemoteContainer" role="tab" aria-controls="navRemoteContainer" aria-selected="false">Navigation</a>
       </li>
@@ -18,11 +18,10 @@
     </ul>
   </div>
   <div class="container compact">
-    <div class="tab-content mb-2">
+    <div class="tab-content mb-2 pt-3">
       <!-- Navigation -->
       <div id="navRemoteContainer" class="tab-pane fade">
         <div class="card mt-3" id="navCard">
-          <h4 class="card-header text-center">Navigation</h4>
           <div class="card-body text-center">
             <div class="row g-1">
               {% for button in navigation_buttons %}
@@ -39,7 +38,6 @@
       <!-- Favorites -->
       <div id="favRemoteContainer" class="tab-pane fade show active">
         <div class="card text-center mt-2" id="favCard">
-          <h4 class="card-header">Favorites</h4>
           <div class="card-body">
             <div class="row g-1">
               {% for button in favorite_buttons %}

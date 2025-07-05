@@ -124,7 +124,7 @@ def voice_command(request):
             logger.error(f"Voice command error: {str(e)}")
             return JsonResponse({
                 'status': 'error',
-                'message': f"Voice command failed: {str(e)}"
+                'message': f"Voice command failed.\nPlease try again."
             }, status=500)
     logger.error("Invalid request method for voice command")
     return JsonResponse({
