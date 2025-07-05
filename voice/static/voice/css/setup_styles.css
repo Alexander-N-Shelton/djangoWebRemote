@@ -42,12 +42,6 @@
   animation: pulse 1s infinite;
 }
 
-#backToVoiceBtn {
-  position: fixed;
-  top: 0.5rem;
-  right: 0.5rem;
-}
-
 @keyframes pulse {
   0% {
     transform: scale(1);

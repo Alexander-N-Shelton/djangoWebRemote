@@ -17,7 +17,7 @@ async function startVoiceCommand() {
   // Update UI for recording state
   isRecording = true;
   button.classList.add("recording");
-  button.innerHTML = '<i class="fas fa-stop"></i>';
+  button.innerHTML = '<i class="fa-regular fa-spinner fa-spin"></i>';
 
   status.innerHTML = `
         <div>

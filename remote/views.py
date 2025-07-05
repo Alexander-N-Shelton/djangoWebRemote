@@ -3,6 +3,7 @@ import json
 import subprocess
 import logging
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
@@ -22,6 +23,9 @@ def remote_view(request):
  
 
     context = {
+        "page_title": "Remote",
+        "page_button": "Edit",
+        "page_button_url": reverse("edit_favorites"),
         "navigation_buttons": navigation_buttons,
         "favorite_buttons": favorite_buttons,
     }

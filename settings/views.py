@@ -20,7 +20,8 @@ def settings_view(request):
     tv_connections = TVConnection.objects.filter(user=request.user)
 
     context = {
-        'tv_connections': tv_connections
+        'page_title': 'Settings',
+        'tv_connections': tv_connections,
     }
     return render(request, 'settings/settings.html', context)
 
